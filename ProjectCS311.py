@@ -411,6 +411,7 @@ if platform == "darwin":
 else:
     w = 600
     h = 700
+
 CreatedConnection()
 root = CreateWindows()
 
