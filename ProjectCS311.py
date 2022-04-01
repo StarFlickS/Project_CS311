@@ -399,6 +399,12 @@ def loginclicked():
                 gmail_ent.focus_force()
 
 
+def ReportCovid19THPage():
+    report_th_page = Frame(root, bg="red")
+    report_th_page.grid(row=0, column=0, rowspan=2, sticky="news")
+
+
+
 if platform == "darwin":
     w = 500
     h = 650
@@ -431,4 +437,5 @@ fg_cfnewpwd_spy = StringVar()
 
 
 LoginPage(root)
+ReportCovid19THPage()
 root.mainloop()
