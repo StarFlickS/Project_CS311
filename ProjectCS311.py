@@ -6,7 +6,7 @@ Made by: Purin Singkaew, Niti
 '''
 Version des:
 v1: Making windows frames and widgets, prepare for more advance features, added login page
-v2: Added Login feature, connect to database
+v2: Added Login feature, connect to database, registration, forget password
 '''
 
 from sys import platform
