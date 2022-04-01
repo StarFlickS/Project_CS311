@@ -5,6 +5,7 @@ Made by: Purin Singkaew, Niti
 
 '''
 Version des:
+Version = Release
 v1: Making windows frames and widgets, prepare for more advance features, added login page
 v2: Added Login feature, connect to database, registration, forget password
 '''
