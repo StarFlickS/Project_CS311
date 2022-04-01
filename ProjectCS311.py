@@ -192,6 +192,7 @@ def ForgetPasswordPage():
     
     fg_gmail_ent.focus_force()
 
+
 def SentCode_clicked():
     global verif_code, verif_ent
     if fg_gmail_spy.get() == "":
@@ -310,7 +311,8 @@ def Verify_clicked():
         Button(fg_page3_frm, text="Change Password", bg="lightgreen", fg="black", font="verdana 15 bold", command=ChangePassword_clicked, borderless=1).grid(row=2, column=1)
 
         fg_newpwd_ent.focus_force()
-    
+
+
 def ChangePassword_clicked():
     if fg_newpwd_spy.get() == "":
         messagebox.showwarning("Admin:", "Please enter your new password.")
@@ -402,7 +404,6 @@ def loginclicked():
 def ReportCovid19THPage():
     report_th_page = Frame(root, bg="red")
     report_th_page.grid(row=0, column=0, rowspan=2, sticky="news")
-
 
 
 if platform == "darwin":
