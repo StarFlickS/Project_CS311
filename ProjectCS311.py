@@ -191,6 +191,7 @@ def ForgetPasswordPage():
     
     fg_gmail_ent.focus_force()
 
+
 def SentCode_clicked():
     global verif_code, verif_ent
     if fg_gmail_spy.get() == "":
@@ -309,7 +310,8 @@ def Verify_clicked():
         Button(fg_page3_frm, text="Change Password", bg="lightgreen", fg="black", font="verdana 15 bold", command=ChangePassword_clicked, borderless=1).grid(row=2, column=1)
 
         fg_newpwd_ent.focus_force()
-    
+
+
 def ChangePassword_clicked():
     if fg_newpwd_spy.get() == "":
         messagebox.showwarning("Admin:", "Please enter your new password.")
@@ -404,6 +406,7 @@ if platform == "darwin":
 else:
     w = 600
     h = 700
+
 CreatedConnection()
 root = CreateWindows()
 
@@ -427,7 +430,6 @@ fg_gmail_spy = StringVar()
 verif_spy = StringVar()
 fg_newpwd_spy = StringVar()
 fg_cfnewpwd_spy = StringVar()
-
 
 LoginPage(root)
 root.mainloop()
