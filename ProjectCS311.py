@@ -590,5 +590,4 @@ img_out = PhotoImage(file="images/icon_out.png").subsample(20,20)
 
 
 LoginPage(root)
-ReportCovid19THPage()
 root.mainloop()
