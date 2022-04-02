@@ -5,7 +5,7 @@ Made by: Purin Singkaew, Niti
 
 '''
 Version des:
-Version = Pre Release
+Version = Release
 v1: Making windows frames and widgets, prepare for more advance features, added login page
 v2: Added Login feature, connect to database, registration, forget password
 v3: Add ReportCovid19 In Thailand Page
