@@ -201,8 +201,8 @@ def SentCode_clicked():
     else:
         text = fg_gmail_ent.get()
         rest = abs(len(text) - 10)
-        if text[rest::] != "@gmail.com":
-            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com")
+        if text[rest::] != "@gmail.com" and text[rest-1::] != "@bumail.net":
+            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com or @bumail.net")
         else:
             sql = "SELECT * FROM users WHERE user_gmail = ?"
             cursor.execute(sql, [fg_gmail_spy.get()])
@@ -264,8 +264,8 @@ def SignUp_clicked():
     else:
         text = rg_gmail_spy.get()
         rest = abs(len(text) - 10)
-        if text[rest::] != "@gmail.com":
-            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com")
+        if text[rest::] != "@gmail.com" and text[rest-1::] != "@bumail.net":
+            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com or @bumail.net")
             gmail_ent.focus_force()
         else:
             sql = "SELECT * FROM users WHERE user_gmail = ?"
