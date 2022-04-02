@@ -8,6 +8,7 @@ Version des:
 Version = Release
 v1: Making windows frames and widgets, prepare for more advance features, added login page
 v2: Added Login feature, connect to database, registration, forget password
+v3: Add ReportCovid19 In Thailand Page
 '''
 
 from sys import platform
@@ -191,6 +192,7 @@ def ForgetPasswordPage():
     
     fg_gmail_ent.focus_force()
 
+
 def SentCode_clicked():
     global verif_code, verif_ent
     if fg_gmail_spy.get() == "":
@@ -199,8 +201,8 @@ def SentCode_clicked():
     else:
         text = fg_gmail_ent.get()
         rest = abs(len(text) - 10)
-        if text[rest::] != "@gmail.com":
-            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com")
+        if text[rest::] != "@gmail.com" and text[rest-1::] != "@bumail.net":
+            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com or @bumail.net")
         else:
             sql = "SELECT * FROM users WHERE user_gmail = ?"
             cursor.execute(sql, [fg_gmail_spy.get()])
@@ -262,8 +264,8 @@ def SignUp_clicked():
     else:
         text = rg_gmail_spy.get()
         rest = abs(len(text) - 10)
-        if text[rest::] != "@gmail.com":
-            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com")
+        if text[rest::] != "@gmail.com" and text[rest-1::] != "@bumail.net":
+            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com or @bumail.net")
             gmail_ent.focus_force()
         else:
             sql = "SELECT * FROM users WHERE user_gmail = ?"
@@ -309,7 +311,8 @@ def Verify_clicked():
         Button(fg_page3_frm, text="Change Password", bg="lightgreen", fg="black", font="verdana 15 bold", command=ChangePassword_clicked, borderless=1).grid(row=2, column=1)
 
         fg_newpwd_ent.focus_force()
-    
+
+
 def ChangePassword_clicked():
     if fg_newpwd_spy.get() == "":
         messagebox.showwarning("Admin:", "Please enter your new password.")
@@ -428,7 +431,6 @@ fg_gmail_spy = StringVar()
 verif_spy = StringVar()
 fg_newpwd_spy = StringVar()
 fg_cfnewpwd_spy = StringVar()
-
 
 LoginPage(root)
 root.mainloop()
