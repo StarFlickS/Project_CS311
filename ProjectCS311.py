@@ -12,6 +12,7 @@ v2: Added Login feature, connect to database, registration, forget password
 v3: Add ReportCovid19 In Thailand Page
 '''
 
+from distutils.log import info
 from sys import platform
 import random
 import smtplib
@@ -404,7 +405,16 @@ def loginclicked():
 
 def ReportCovid19THPage():
     report_th_page = Frame(root, bg="red")
+    report_th_page.rowconfigure(0, weight=1)
+    report_th_page.rowconfigure(1, weight=3)
+    report_th_page.columnconfigure(0, weight=1)
     report_th_page.grid(row=0, column=0, rowspan=2, sticky="news")
+
+    head = Frame(report_th_page, bg="green")
+    head.grid(row=0, column=0, sticky="news")
+
+    info_frm = Frame(report_th_page, bg="yellow")
+    info_frm.grid(row=1, column=0, sticky="news")
 
 
 if platform == "darwin":
