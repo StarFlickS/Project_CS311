@@ -265,7 +265,7 @@ def SignUp_clicked():
     else:
         text = rg_gmail_spy.get()
         rest = abs(len(text) - 10)
-        if text[rest::] != "@gmail.com":
+        if text[rest::] != "@gmail.com" and text[rest::] != "@bumail.net":
             messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com")
             gmail_ent.focus_force()
         else:
