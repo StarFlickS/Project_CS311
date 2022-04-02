@@ -417,16 +417,11 @@ def menufame(result):
     Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",image=img_lupa,compound=LEFT).grid(row=0,column=2,columnspan=2,sticky="e",pady=20,ipady=40,padx=10,ipadx=20)
     Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",image=img_map,compound=LEFT).grid(row=1,column=0,columnspan=2,sticky="w",pady=20,ipady=40,padx=20,ipadx=20)
     Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",image=img_bot,compound=LEFT).grid(row=1,column=1,sticky="w",pady=20,ipady=40,padx=20,ipadx=20)
-    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",image=img_out,compound=LEFT).grid(row=1,column=2,columnspan=2,sticky="e",pady=20,ipady=40,padx=10,ipadx=20)
+    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",image=img_out,command=logout,compound=LEFT).grid(row=1,column=2,columnspan=2,sticky="e",pady=20,ipady=40,padx=10,ipadx=20)
 
 
-
-
- 
-
-    
-
-
+def logout(): 
+    LoginPage(root)
 
 if platform == "darwin":
     w = 500
