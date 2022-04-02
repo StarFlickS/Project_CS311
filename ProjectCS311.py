@@ -399,12 +399,12 @@ def loginclicked():
             result = cursor.fetchone()
             if result:
                 messagebox.showinfo("Admin:", "Login Successfully.")
+                menufame(result)
             else:
                 messagebox.showerror("Admin:", "Gmail or Password incorrect, please try again.")
                 gmail_spy.set("")
                 pwd_spy.set("")
                 gmail_ent.focus_force()
-            menufame(result)
 
 def menufame(result): 
     global mf_frm
