@@ -347,7 +347,6 @@ def ChangePassword_clicked():
             fg_cfnewpwd_spy.set("")
 
 
-
 def ExitRegistrationPage():
     header["text"] = "Sign In"
     rg_frm.destroy()
@@ -403,6 +402,7 @@ def loginclicked():
                 pwd_spy.set("")
                 gmail_ent.focus_force()
 
+
 def menufame(result): 
     global mf_frm
     header["text"] = "Username:"+" "+result[2]+" "+result[3]
@@ -415,7 +415,7 @@ def menufame(result):
     Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_home,compound=LEFT, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
     Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=LEFT, borderless=1).grid(row=0,column=1, sticky="news", pady=20)
     Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=LEFT, borderless=1).grid(row=0,column=2, sticky="news", padx=20, pady=20)
-    Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=LEFT, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
+    Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=LEFT, command=OpenMap, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
     Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=LEFT, borderless=1).grid(row=1,column=1, sticky="news", pady=10)
     Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=LEFT, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
 
@@ -424,6 +424,7 @@ def logout():
     gmail_spy.set("") 
     pwd_spy.set("")
     LoginPage(root)
+
 
 def ReportCovid19THPage():
     report_th_page = Frame(root, bg="red")
@@ -544,6 +545,12 @@ def ReportCovid19THPage():
     Label(total_d_frm, text="Total Death:", fg="white", bg="#f33534", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
     Label(total_d_frm, text=total_d_str, fg="white", bg="#f33534", font="verdana 25").grid(row=1, column=0, sticky='se')
     total_d_frm.grid(row=2, column=0, sticky="news", padx=20, pady=20)
+
+
+def OpenMap():
+    url = 'https://mohpromtstation.moph.go.th/maps'
+    webbrowser.open(url)
+
 
 if platform == "darwin":
     w = 500
