@@ -411,17 +411,14 @@ def menufame(result):
     mf_frm = Frame(root, bg="white")
     mf_frm.rowconfigure((0,1), weight=1)
     mf_frm.columnconfigure((0,1,2),weight=1)
-    if platform == "darwin":
-        mf_frm.grid(row=0, rowspan=2, column=0,sticky="news",padx=10, pady=150)
-    else:
-        mf_frm.grid(row=0, rowspan=2, column=0,sticky="news",padx=50, pady=150)
+    mf_frm.grid(row=0, rowspan=2, column=0,sticky="news",padx=10, pady=150)
     
-    Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 10",image=img_home,compound=LEFT, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
+    Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_home,compound=LEFT, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
     Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=LEFT, borderless=1).grid(row=0,column=1, sticky="news", pady=20)
     Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=LEFT, borderless=1).grid(row=0,column=2, sticky="news", padx=20, pady=20)
-    Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 10",image=img_map,compound=LEFT, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
-    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_bot,compound=LEFT, borderless=1).grid(row=1,column=1, sticky="news", pady=10)
-    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_out,command=logout,compound=LEFT, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
+    Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=LEFT, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
+    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=LEFT, borderless=1).grid(row=1,column=1, sticky="news", pady=10)
+    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=LEFT, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
 
 
 def logout(): 
