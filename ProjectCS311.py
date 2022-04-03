@@ -443,7 +443,7 @@ def ReportCovid19THPage():
     info_frm.grid(row=1, column=0, sticky="news")
 
     # * Header
-    Button(head, image=go_back_img, bg="#dde0fa").grid(row=0, column=0, sticky="news")
+    Button(head, image=go_back_img, bg="#dde0fa", command=report_th_page.destroy).grid(row=0, column=0, sticky="news")
     Label(head, text="My Country", fg="black", bg="#808cff", font="verdana 15 bold").grid(row=0, column=1, sticky="news")
     Label(head, text="                ", fg="black", bg="#dde0fa", font="verdana 15 bold").grid(row=0, column=2, sticky="news")
     Label(head, text="Thailand", fg="lightgray", bg="#808cff", font="verdana 25", width=25).grid(row=1, column=0, columnspan=3)
