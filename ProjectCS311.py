@@ -420,7 +420,9 @@ def menufame(result):
     Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=LEFT, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
 
 
-def logout(): 
+def logout():
+    gmail_spy.set("") 
+    pwd_spy.set("")
     LoginPage(root)
 
 def ReportCovid19THPage():
