@@ -90,6 +90,10 @@ def LoginPage(root):
     Button(bottom_frm, text="Forget password?", fg="black", font="verdana 15 bold", bg="white", borderless=1, command=ForgetPasswordPage).grid(row=1, column=1)
 
     gmail_ent.focus_force()
+<<<<<<< HEAD
+=======
+
+>>>>>>> aee798329db785e39a6b7173842990bfe00df12b
 
 def RegistrationPage():
     global rg_frm, fname_ent, lname_ent, gmail_ent, phone_ent, pwd_ent, cfpwd_ent
@@ -404,19 +408,28 @@ def loginclicked():
 
 def menufame(result): 
     global mf_frm
-    header["text"] = "Username:"+""+result[2]+""+result[3]
+    header["text"] = "Username:"+" "+result[2]+" "+result[3]
     
     mf_frm = Frame(root, bg="white")
-    mf_frm.rowconfigure((0,1,2,3,4),weight=1)
-    mf_frm.columnconfigure(0,weight=2)
-    mf_frm.grid(row=0, rowspan=2, column=0,columnspan=2,sticky="news",padx=50, pady=150)
+    mf_frm.rowconfigure((0,1), weight=1)
+    mf_frm.columnconfigure((0,1,2),weight=1)
+    mf_frm.grid(row=0, rowspan=2, column=0,sticky="news",padx=10, pady=150)
     
+<<<<<<< HEAD
     Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",image=img_home,compound=LEFT, command=ReportCovid19THPage).grid(row=0,column=0,columnspan=2,sticky="w",pady=20,ipady=40,padx=20,ipadx=20)
     Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",image=img_earth,compound=LEFT).grid(row=0,column=1,sticky="w",pady=20,ipady=40,padx=20,ipadx=20)
     Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",image=img_lupa,compound=LEFT).grid(row=0,column=2,columnspan=2,sticky="e",pady=20,ipady=40,padx=10,ipadx=20)
     Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",image=img_map,compound=LEFT).grid(row=1,column=0,columnspan=2,sticky="w",pady=20,ipady=40,padx=20,ipadx=20)
     Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",image=img_bot,compound=LEFT).grid(row=1,column=1,sticky="w",pady=20,ipady=40,padx=20,ipadx=20)
     Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",image=img_out,command=logout,compound=LEFT).grid(row=1,column=2,columnspan=2,sticky="e",pady=20,ipady=40,padx=10,ipadx=20)
+=======
+    Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_home,compound=LEFT, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
+    Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=LEFT, borderless=1).grid(row=0,column=1, sticky="news", pady=20)
+    Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=LEFT, borderless=1).grid(row=0,column=2, sticky="news", padx=20, pady=20)
+    Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=LEFT, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
+    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=LEFT, borderless=1).grid(row=1,column=1, sticky="news", pady=10)
+    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=LEFT, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
+>>>>>>> aee798329db785e39a6b7173842990bfe00df12b
 
 
 def logout(): 
@@ -441,7 +454,7 @@ def ReportCovid19THPage():
     info_frm.grid(row=1, column=0, sticky="news")
 
     # * Header
-    Button(head, image=go_back_img, bg="#dde0fa").grid(row=0, column=0, sticky="news")
+    Button(head, image=go_back_img, bg="#dde0fa", command=report_th_page.destroy).grid(row=0, column=0, sticky="news")
     Label(head, text="My Country", fg="black", bg="#808cff", font="verdana 15 bold").grid(row=0, column=1, sticky="news")
     Label(head, text="                ", fg="black", bg="#dde0fa", font="verdana 15 bold").grid(row=0, column=2, sticky="news")
     Label(head, text="Thailand", fg="lightgray", bg="#808cff", font="verdana 25", width=25).grid(row=1, column=0, columnspan=3)
