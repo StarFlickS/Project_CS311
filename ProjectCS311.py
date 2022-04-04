@@ -17,13 +17,8 @@ from sys import platform
 import random
 import smtplib
 from email.message import EmailMessage
-<<<<<<< HEAD
+from tkinter import font
 from tkinter.ttk import Combobox
-=======
-from turtle import width
-from unittest import TextTestResult
-from numpy import insert
->>>>>>> chatbot
 import requests
 import webbrowser
 import sqlite3
@@ -732,7 +727,7 @@ def chatbot():
     chatbotfrm.place(x=0,y=0,width=w,height=h)
     Label(chatbotfrm, text="COVID19", fg="#808cff", bg="#daeffd", font="verdana 40").grid(row=0,column=0,columnspan=2,sticky="news")
     
-    top = Text(chatbotfrm,bg='#daeffd')
+    top = Text(chatbotfrm,bg='#daeffd', fg="black", font="verdana 15")
     top.columnconfigure((0,1,2,3),weight=1)
     top.grid(row=1,column=0,sticky='news',rowspan=7)
 
@@ -747,22 +742,22 @@ def chatbot():
     entry_chatbot.focus_force()
 
 def send():
-    send="You =>"+spy_message.get()
+    send="You => "+spy_message.get()
     top.insert(END,"\n"+send)
     if(entry_chatbot.get()=="ถ้าติดโควิด19จะทำยังไง"): 
-        top.insert(END,"\n" +"Chatbot==> 1.เตรียมเอกสราต้องใช้ เช่น บัรต ปชช ผลตรวจCOVID\nและแจ้าหมายเลขโทรศัพท์ของตน ทางหน่อยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดครอบควรและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้")
+        top.insert(END,"\n" +"Chatbot ==> 1.เตรียมเอกสราต้องใช้ เช่น บัรต ปชช ผลตรวจCOVID\nและแจ้าหมายเลขโทรศัพท์ของตน ทางหน่อยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดครอบควรและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้")
     elif(entry_chatbot.get()=="ถ้าติดโควิดจะทำยังไง"):
-        top.insert(END,"\n" +"Chatbot==> 1.เตรียมเอกสราต้องใช้ เช่น บัรต ปชช ผลตรวจCOVID\nและแจ้าหมายเลขโทรศัพท์ของตน ทางหน่อยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดครอบควรและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้")
+        top.insert(END,"\n" +"Chatbot ==> 1.เตรียมเอกสราต้องใช้ เช่น บัรต ปชช ผลตรวจCOVID\nและแจ้าหมายเลขโทรศัพท์ของตน ทางหน่อยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดครอบควรและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้")
     elif(entry_chatbot.get()=="วัคซีนโควิด19ในประเทศไทย"):
-        top.insert(END,"\n"+"Chatbot==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine")
+        top.insert(END,"\n"+"Chatbot ==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine")
     elif(entry_chatbot.get()=="วัคซีน ในประเทศไทย"):
-        top.insert(END,"\n"+"Chatbot==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine")
+        top.insert(END,"\n"+"Chatbot ==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine")
     elif(entry_chatbot.get()=="สำหรับผู้ที่เคยมีประวัติเป็นโรคโควิด19มาก่อน ยังจำเป็นต้องได้รับวัคซีนโควิด 19 หรือไม่"):
-        top.insert(END,"\n"+"Chatbot==> แม้จะมีภูมิคุ้มกันต่อเชื้อไวรัสโควิด19ในร่างกายแต่ยังมีโอกาสติดเชื้อซ้ำได้ ดังนั้นจึงควรได้รับวัคซีน")
+        top.insert(END,"\n"+"Chatbot ==> แม้จะมีภูมิคุ้มกันต่อเชื้อไวรัสโควิด19ในร่างกายแต่ยังมีโอกาสติดเชื้อซ้ำได้ ดังนั้นจึงควรได้รับวัคซีน")
     elif(entry_chatbot.get()=="อาการเบื้องตอนของโควิด"):
-        top.insert(END,"\n"+"Chatbot==> -ไม่มีอาการ\n-มีไข้/วัดอุณหภูมิได้ 37.5 C ขึ้นไป\n-ไอ มีน้ำมูก เจ็บคอ\n-ถ่ายเหลว\n-จมูกไม่ได้กลิ่น ลิ้นไม่รับรส-\n-ตาแดง มีผื่น\n-ไม่มีโรคประจำตัวร่วม\n-หายใจปกติ ปอดไม่อักเสบ\n-ไม่มีปัจจัยเสี่ยงต่อการเป็นโรครุนแรง / โรคร่วมสำคัญ")
+        top.insert(END,"\n"+"Chatbot ==> -ไม่มีอาการ\n-มีไข้/วัดอุณหภูมิได้ 37.5 C ขึ้นไป\n-ไอ มีน้ำมูก เจ็บคอ\n-ถ่ายเหลว\n-จมูกไม่ได้กลิ่น ลิ้นไม่รับรส-\n-ตาแดง มีผื่น\n-ไม่มีโรคประจำตัวร่วม\n-หายใจปกติ ปอดไม่อักเสบ\n-ไม่มีปัจจัยเสี่ยงต่อการเป็นโรครุนแรง / โรคร่วมสำคัญ")
     else : 
-        top.insert(END,"Chatbot==> กรุณาใส่ข้อความใหม่")
+        top.insert(END,"\nChatbot ==> กรุณาใส่ข้อความใหม่")
         entry_chatbot.focus_force()
     entry_chatbot.delete(0,END)
 
