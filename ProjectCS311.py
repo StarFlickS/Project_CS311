@@ -17,7 +17,6 @@ from sys import platform
 import random
 import smtplib
 from email.message import EmailMessage
-from tkinter import font
 from tkinter.ttk import Combobox
 import requests
 import webbrowser
