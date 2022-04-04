@@ -547,6 +547,10 @@ def ReportCovid19THPage():
     total_d_frm.grid(row=2, column=0, sticky="news", padx=20, pady=20)
 
 
+def ReportCovid19GlobalPage():
+    pass
+
+
 def OpenMap():
     url = 'https://mohpromtstation.moph.go.th/maps'
     webbrowser.open(url)
