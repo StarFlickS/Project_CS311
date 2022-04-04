@@ -18,7 +18,13 @@ import random
 import smtplib # *
 from email.message import EmailMessage
 from tkinter.ttk import Combobox
+<<<<<<< HEAD
 import requests # *
+=======
+from turtle import right
+from click import command
+import requests
+>>>>>>> chatbottest
 import webbrowser
 import sqlite3
 from tkinter import *
@@ -92,6 +98,8 @@ def LoginPage(root):
     Button(bottom_frm, text="Forget password?", fg="black", font="verdana 15 bold", bg="white", borderless=1, command=ForgetPasswordPage).grid(row=1, column=1)
 
     gmail_ent.focus_force()
+    gmail_ent.insert(0,"nitipuangsema@gmail.com")
+    password_ent.insert(0,"123456")
 
 
 def RegistrationPage():
@@ -196,6 +204,7 @@ def ForgetPasswordPage():
     Button(fg_page1_frm, text="Cancel", bg="lightgray", fg="black", font="verdana 20 bold", borderless=1, command=lambda:ExitForgerPasswordPage(1)).grid(row=1, column=0)
     
     fg_gmail_ent.focus_force()
+    
 
 
 def SentCode_clicked():
@@ -720,19 +729,33 @@ def OpenMap():
 def chatbot(): 
     global chatbotfrm,top,lower,entry_chatbot,Button_send
     chatbotfrm = Text(root,bg="#daeffd")
-    chatbotfrm.rowconfigure((0,1,),weight=1)
+    chatbotfrm.rowconfigure(0,weight=1)
     chatbotfrm.rowconfigure(1,weight=4)
-    chatbotfrm.columnconfigure((0), weight=2)
+    chatbotfrm.rowconfigure(2,weight=2)
+    chatbotfrm.columnconfigure((0,1),weight=2)
     chatbotfrm.place(x=0,y=0,width=w,height=h)
-    Label(chatbotfrm, text="COVID19", fg="#808cff", bg="#daeffd", font="verdana 40").grid(row=0,column=0,columnspan=2,sticky="news")
+    Label(chatbotfrm, text="ChatBot", fg="#808cff", bg="#daeffd", font="verdana 40").grid(row=0,column=0,columnspan=2,sticky="news")
     
-    top = Text(chatbotfrm,bg='#daeffd', fg="black", font="verdana 15")
-    top.columnconfigure((0,1,2,3),weight=1)
-    top.grid(row=1,column=0,sticky='news',rowspan=7)
+    top = Text(chatbotfrm,bg='#daeffd', fg="black", font="verdana 15",width=200,height=2)
+    top.columnconfigure(0,weight=1)
+    top.grid(row=1,column=0,sticky='news')
+    scrollbar = Scrollbar(top)
+    scrollbar.pack(side=RIGHT,fill="y")
+    #scrollbar.columnconfigure(command=top.yview)
+    
+    right = Frame(chatbotfrm,bg="#daeffd")
+    right.columnconfigure((0,1,2,3,4),weight=1)
+    right.grid(row=2,column=0,sticky='news',rowspan=7)
+    Label(right,text="สอบถามกดเลข",bg="#daeffd",fg="black", font="verdana 15").grid(row=0,column=0,sticky="w")
+    Label(right,text="1.ถ้าติดโควิด19จะทำยังไง : กด1",bg="#daeffd",fg="black", font="verdana 15").grid(row=1,column=0,sticky="w")
+    Label(right,text="2.วัคซีนในประเทศไทย : กด2",bg="#daeffd",fg="black", font="verdana 15").grid(row=2,column=0,sticky="w")
+    Label(right,text="3.ผู้ที่เคยติดโควิด19มาก่อน ยังจำเป็นต้องได้รับวัคซีนโควิด 19 หรือไม่ :กด3",bg="#daeffd",fg="black", font="verdana 15").grid(row=3,column=0,sticky="w")
+    Label(right,text="4.อาการเบื้องต้นของโควิด : กด4",bg="#daeffd",fg="black", font="verdana 15").grid(row=4,column=0,sticky="w")
+    
 
     lower = Text(chatbotfrm,bg='#daeffd')
     lower.columnconfigure((0,1),weight=1)
-    lower.grid(row=2,column=0,columnspan=2,sticky='news',rowspan=7)
+    lower.grid(row=3,column=0,columnspan=1,sticky='news',rowspan=7)
     entry_chatbot=Entry(lower,textvariable=spy_message)
     entry_chatbot.grid(row=1,column=0,ipadx=150)
     Button_send = Button(lower,text="Send",bg="#808cff",fg="white",command=send)
@@ -743,17 +766,13 @@ def chatbot():
 def send():
     send="You => "+spy_message.get()
     top.insert(END,"\n"+send)
-    if(entry_chatbot.get()=="ถ้าติดโควิด19จะทำยังไง"): 
+    if(entry_chatbot.get()=="1"): 
         top.insert(END,"\n" +"Chatbot ==> 1.เตรียมเอกสราต้องใช้ เช่น บัรต ปชช ผลตรวจCOVID\nและแจ้าหมายเลขโทรศัพท์ของตน ทางหน่อยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดครอบควรและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้")
-    elif(entry_chatbot.get()=="ถ้าติดโควิดจะทำยังไง"):
-        top.insert(END,"\n" +"Chatbot ==> 1.เตรียมเอกสราต้องใช้ เช่น บัรต ปชช ผลตรวจCOVID\nและแจ้าหมายเลขโทรศัพท์ของตน ทางหน่อยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดครอบควรและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้")
-    elif(entry_chatbot.get()=="วัคซีนโควิด19ในประเทศไทย"):
+    elif(entry_chatbot.get()=="2"):
         top.insert(END,"\n"+"Chatbot ==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine")
-    elif(entry_chatbot.get()=="วัคซีน ในประเทศไทย"):
-        top.insert(END,"\n"+"Chatbot ==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine")
-    elif(entry_chatbot.get()=="สำหรับผู้ที่เคยมีประวัติเป็นโรคโควิด19มาก่อน ยังจำเป็นต้องได้รับวัคซีนโควิด 19 หรือไม่"):
-        top.insert(END,"\n"+"Chatbot ==> แม้จะมีภูมิคุ้มกันต่อเชื้อไวรัสโควิด19ในร่างกายแต่ยังมีโอกาสติดเชื้อซ้ำได้ ดังนั้นจึงควรได้รับวัคซีน")
-    elif(entry_chatbot.get()=="อาการเบื้องตอนของโควิด"):
+    elif(entry_chatbot.get()=="3"):
+        top.insert(END,"\n"+"Chatbot ==> แม้จะมีภูมิคุ้มกันต่อเชื้อไวรัสโควิด19ในร่างกายแต่ยังมี\nโอกาสติดเชื้อซ้ำได้ ดังนั้นจึงควรได้รับวัคซีน")
+    elif(entry_chatbot.get()=="4"):
         top.insert(END,"\n"+"Chatbot ==> -ไม่มีอาการ\n-มีไข้/วัดอุณหภูมิได้ 37.5 C ขึ้นไป\n-ไอ มีน้ำมูก เจ็บคอ\n-ถ่ายเหลว\n-จมูกไม่ได้กลิ่น ลิ้นไม่รับรส-\n-ตาแดง มีผื่น\n-ไม่มีโรคประจำตัวร่วม\n-หายใจปกติ ปอดไม่อักเสบ\n-ไม่มีปัจจัยเสี่ยงต่อการเป็นโรครุนแรง / โรคร่วมสำคัญ")
     else : 
         top.insert(END,"\nChatbot ==> กรุณาใส่ข้อความใหม่")
