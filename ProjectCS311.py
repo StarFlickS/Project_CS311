@@ -563,6 +563,7 @@ def ReportCovid19THPage():
     Label(total_d_frm, text=total_d_str, fg="white", bg="#f33534", font="verdana 25").grid(row=1, column=0, sticky='se')
     total_d_frm.grid(row=2, column=0, sticky="news", padx=20, pady=20)
 
+    Label(info_frm, text="Source: Ministry of Public Health", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
 
 def ReportCovid19GlobalPage():
     global response, info_frm
@@ -708,6 +709,8 @@ def Country_selected(e):
     Label(total_d_frm, text="Total Death:", fg="white", bg="#f33534", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
     Label(total_d_frm, text=total_d_str, fg="white", bg="#f33534", font="verdana 25").grid(row=1, column=0, sticky='se')
     total_d_frm.grid(row=2, column=0, sticky="news", padx=20, pady=20)
+
+    Label(info_frm, text="Source: disease.sh - Open Disease Data API", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
 
 def OpenMap():
     url = 'https://mohpromtstation.moph.go.th/maps'
