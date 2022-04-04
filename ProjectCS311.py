@@ -714,9 +714,11 @@ def Country_selected(e):
     Label(info_frm, text="*ข้อมูลอาจจะยังไม่ได้รับการอัพเดทในบ้างประเทศ*", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
     Label(info_frm, text="Source: disease.sh - Open Disease Data API", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=4, column=0, columnspan=2)
 
+
 def OpenMap():
     url = 'https://mohpromtstation.moph.go.th/maps'
     webbrowser.open(url)
+
 
 def chatbot(): 
     global chatbotfrm,top,lower,entry_chatbot,Button_send
@@ -753,6 +755,7 @@ def chatbot():
     Button_send.grid(row=1,column=1,columnspan=2,ipadx=30)
     Button(chatbotfrm,image=go_back_img,bg="#808cff",command=chatbotfrm.destroy).grid(row=0,column=0,sticky="nw",ipadx=30)
     entry_chatbot.focus_force()
+
 
 def send():
     send="You => "+spy_message.get()
@@ -806,7 +809,6 @@ fg_cfnewpwd_spy = StringVar()
 # ! Report Global spy
 selected_country = StringVar()
 
-
 go_back_img = PhotoImage(file="images/return.png").subsample(2,2)
 img_bot = PhotoImage(file="images/icon_bot.png").subsample(10,10)
 img_earth = PhotoImage(file="images/icon_earth.png").subsample(20,20)
@@ -817,7 +819,6 @@ img_out = PhotoImage(file="images/icon_out.png").subsample(20,20)
 
 #spy chatbot 
 spy_message = StringVar()
-
 spy_send = StringVar()
 
 LoginPage(root)
