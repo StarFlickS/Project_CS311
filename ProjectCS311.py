@@ -15,21 +15,16 @@ v4: Add ReportCovidGlobalPage, Add chatbot
 
 from sys import platform
 import random 
-import smtplib # *
+import smtplib
 from email.message import EmailMessage
 from tkinter.ttk import Combobox
-<<<<<<< HEAD
-import requests # *
-=======
-from turtle import right
-from click import command
 import requests
->>>>>>> chatbottest
+import requests
 import webbrowser
 import sqlite3
 from tkinter import *
 from tkinter import messagebox
-from tkmacosx import Button # * 
+from tkmacosx import Button 
 
 def CreatedConnection():
     global conn, cursor
@@ -98,8 +93,6 @@ def LoginPage(root):
     Button(bottom_frm, text="Forget password?", fg="black", font="verdana 15 bold", bg="white", borderless=1, command=ForgetPasswordPage).grid(row=1, column=1)
 
     gmail_ent.focus_force()
-    gmail_ent.insert(0,"nitipuangsema@gmail.com")
-    password_ent.insert(0,"123456")
 
 
 def RegistrationPage():
@@ -741,7 +734,6 @@ def chatbot():
     top.grid(row=1,column=0,sticky='news')
     scrollbar = Scrollbar(top)
     scrollbar.pack(side=RIGHT,fill="y")
-    #scrollbar.columnconfigure(command=top.yview)
     
     right = Frame(chatbotfrm,bg="#daeffd")
     right.columnconfigure((0,1,2,3,4),weight=1)
@@ -767,17 +759,18 @@ def send():
     send="You => "+spy_message.get()
     top.insert(END,"\n"+send)
     if(entry_chatbot.get()=="1"): 
-        top.insert(END,"\n" +"Chatbot ==> 1.เตรียมเอกสราต้องใช้ เช่น บัรต ปชช ผลตรวจCOVID\nและแจ้าหมายเลขโทรศัพท์ของตน ทางหน่อยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดครอบควรและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้")
+        top.insert(END,"\n" +"Chatbot ==> 1.เตรียมเอกสารต้องใช้ เช่น บัตร ปชช ผลตรวจCOVID19\nและแจ้งหมายเลขโทรศัพท์ของตน ทางหน่วยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดคนในครอบครัวและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5.หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้\n")
     elif(entry_chatbot.get()=="2"):
-        top.insert(END,"\n"+"Chatbot ==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine")
+        top.insert(END,"\n"+"Chatbot ==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine\n")
     elif(entry_chatbot.get()=="3"):
-        top.insert(END,"\n"+"Chatbot ==> แม้จะมีภูมิคุ้มกันต่อเชื้อไวรัสโควิด19ในร่างกายแต่ยังมี\nโอกาสติดเชื้อซ้ำได้ ดังนั้นจึงควรได้รับวัคซีน")
+        top.insert(END,"\n"+"Chatbot ==> แม้จะมีภูมิคุ้มกันต่อเชื้อไวรัสโควิด19ในร่างกายแต่ยังมี\nโอกาสติดเชื้อซ้ำได้ ดังนั้นจึงควรได้รับวัคซีน\n")
     elif(entry_chatbot.get()=="4"):
-        top.insert(END,"\n"+"Chatbot ==> -ไม่มีอาการ\n-มีไข้/วัดอุณหภูมิได้ 37.5 C ขึ้นไป\n-ไอ มีน้ำมูก เจ็บคอ\n-ถ่ายเหลว\n-จมูกไม่ได้กลิ่น ลิ้นไม่รับรส-\n-ตาแดง มีผื่น\n-ไม่มีโรคประจำตัวร่วม\n-หายใจปกติ ปอดไม่อักเสบ\n-ไม่มีปัจจัยเสี่ยงต่อการเป็นโรครุนแรง / โรคร่วมสำคัญ")
+        top.insert(END,"\n"+"Chatbot ==> -ไม่มีอาการ\n-มีไข้/วัดอุณหภูมิได้ 37.5 C ขึ้นไป\n-ไอ มีน้ำมูก เจ็บคอ\n-ถ่ายเหลว\n-จมูกไม่ได้กลิ่น ลิ้นไม่รับรส-\n-ตาแดง มีผื่น\n-ไม่มีโรคประจำตัวร่วม\n-หายใจปกติ ปอดไม่อักเสบ\n-ไม่มีปัจจัยเสี่ยงต่อการเป็นโรครุนแรง / โรคร่วมสำคัญ\n")
     else : 
         top.insert(END,"\nChatbot ==> กรุณาใส่ข้อความใหม่")
         entry_chatbot.focus_force()
     entry_chatbot.delete(0,END)
+    entry_chatbot.focus_force()
 
 
 if platform == "darwin":
