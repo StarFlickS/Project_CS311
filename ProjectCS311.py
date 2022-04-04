@@ -9,7 +9,7 @@ Version = Pre Release
 v1: Making windows frames and widgets, prepare for more advance features, added login page
 v2: Added Login feature, connect to database, registration, forget password
 v3: Add ReportCovid19 In Thailand Page, Add Menu page, Add open map feature
-v4: Add ReportCovidGlobalPage
+v4: Add ReportCovidGlobalPage, Add chatbot
 '''
 
 
