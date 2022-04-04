@@ -209,6 +209,8 @@ def SentCode_clicked():
         rest = abs(len(text) - 10)
         if text[rest::] != "@gmail.com" and text[rest-1::] != "@bumail.net":
             messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com or @bumail.net")
+            fg_gmail_ent.focus()
+            fg_gmail_ent.select_range(0, END)
         else:
             sql = "SELECT * FROM users WHERE user_gmail = ?"
             cursor.execute(sql, [fg_gmail_spy.get()])
