@@ -592,8 +592,7 @@ img_map = PhotoImage(file="images/icon_map.png").subsample(20,20)
 img_out = PhotoImage(file="images/icon_out.png").subsample(20,20)    
 
 
-
-
-
 LoginPage(root)
 root.mainloop()
+cursor.close()
+conn.close()
