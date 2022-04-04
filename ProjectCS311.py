@@ -9,19 +9,21 @@ Version = Release
 v1: Making windows frames and widgets, prepare for more advance features, added login page
 v2: Added Login feature, connect to database, registration, forget password
 v3: Add ReportCovid19 In Thailand Page, Add Menu page, Add open map feature
+v4: Add ReportCovidGlobalPage, Add chatbot
 '''
 
-
 from sys import platform
-import random
+import random 
 import smtplib
 from email.message import EmailMessage
+from tkinter.ttk import Combobox
+import requests
 import requests
 import webbrowser
 import sqlite3
 from tkinter import *
 from tkinter import messagebox
-from tkmacosx import Button
+from tkmacosx import Button 
 
 def CreatedConnection():
     global conn, cursor
@@ -163,6 +165,7 @@ def RegistrationPage():
     fname_ent.focus_force()
 
 
+
 def ForgetPasswordPage():
     global fg_frm, fg_gmail_ent, fg_page1_frm, fg_page2_frm, fg_page3_frm
     header["text"] = "Forget Password"
@@ -193,6 +196,7 @@ def ForgetPasswordPage():
     Button(fg_page1_frm, text="Cancel", bg="lightgray", fg="black", font="verdana 20 bold", borderless=1, command=lambda:ExitForgerPasswordPage(1)).grid(row=1, column=0)
     
     fg_gmail_ent.focus_force()
+    
 
 
 def SentCode_clicked():
@@ -404,7 +408,7 @@ def loginclicked():
 
 
 def menufame(result): 
-    global mf_frm
+    global mf_frm 
     header["text"] = "Username:"+" "+result[2]+" "+result[3]
     
     mf_frm = Frame(root, bg="white")
@@ -412,12 +416,12 @@ def menufame(result):
     mf_frm.columnconfigure((0,1,2),weight=1)
     mf_frm.grid(row=0, rowspan=2, column=0,sticky="news",padx=10, pady=150)
     
-    Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_home,compound=LEFT, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
-    Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=LEFT, borderless=1).grid(row=0,column=1, sticky="news", pady=20)
-    Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=LEFT, borderless=1).grid(row=0,column=2, sticky="news", padx=20, pady=20)
-    Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=LEFT, command=OpenMap, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
-    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=LEFT, borderless=1).grid(row=1,column=1, sticky="news", pady=10)
-    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=LEFT, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
+    Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_home,compound=TOP, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
+    Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=TOP, borderless=1, command=ReportCovid19GlobalPage).grid(row=0,column=1, sticky="news", pady=20)
+    Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=TOP, borderless=1).grid(row=0,column=2, sticky="news", padx=20, pady=20)
+    Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=TOP, command=OpenMap, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
+    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=TOP, borderless=1,command=chatbot).grid(row=1,column=1, sticky="news", pady=10)
+    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=TOP, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
 
 
 def logout():
@@ -467,8 +471,11 @@ def ReportCovid19THPage():
         total_case_str += total[i]
         counts += 1
         if counts == 3:
-            total_case_str += ","
-            counts = 0
+            if i+1 == len(total):
+                pass
+            else:
+                total_case_str += ","
+                counts = 0
     total_case_str = total_case_str[::-1]
     Label(total_frm, text="Total Confirmed Cases:", fg="white", bg="#fd8888", font="verdana 19").grid(row=0, column=0, sticky='nw', padx=5, pady=5)
     Label(total_frm, text=total_case_str, fg="white", bg="#fd8888", font="verdana 40").grid(row=1, column=0, sticky='e')
@@ -485,8 +492,11 @@ def ReportCovid19THPage():
         recov_str += recov[i]
         counts += 1
         if counts == 3:
-            recov_str += ","
-            counts = 0
+            if i+1 == len(recov):
+                pass
+            else:
+                recov_str += ","
+                counts = 0
     recov_str = recov_str[::-1]
     Label(recov_frm, text="Today Recovery:", fg="white", bg="#84e756", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
     Label(recov_frm, text=recov_str, fg="white", bg="#84e756", font="verdana 25").grid(row=1, column=0, sticky='se')
@@ -503,8 +513,11 @@ def ReportCovid19THPage():
         td_case_str += td_case[i]
         counts += 1
         if counts == 3:
-            td_case_str += ","
-            counts = 0
+            if i+1 == len(td_case):
+                pass
+            else:
+                td_case_str += ","
+                counts = 0
     td_case_str = td_case_str[::-1]
     Label(td_frm, text="Today Case:", fg="white", bg="#808cff", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
     Label(td_frm, text=td_case_str, fg="white", bg="#808cff", font="verdana 25").grid(row=1, column=0, sticky='se')
@@ -521,8 +534,11 @@ def ReportCovid19THPage():
         td_d_case_str += td_d_case[i]
         counts += 1
         if counts == 3:
-            td_d_case_str += ","
-            counts = 0
+            if i+1 == len(td_d_case):
+                pass
+            else:
+                td_d_case_str += ","
+                counts = 0
     td_d_case_str = td_d_case_str[::-1]
     Label(today_d_frm, text="Today Death:", fg="white", bg="gray", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
     Label(today_d_frm, text=td_d_case_str, fg="white", bg="gray", font="verdana 25").grid(row=1, column=0, sticky='se')
@@ -532,24 +548,231 @@ def ReportCovid19THPage():
     total_d_frm = Frame(info_frm, bg="#f33534")
     total_d_frm.rowconfigure((0,1), weight=1)
     total_d_frm.columnconfigure(0, weight=1)
-    total_d = str(info["new_recovered"])[::-1]
+    total_d = str(info["total_death"])[::-1]
     total_d_str = ""
     counts = 0
     for i in range(len(total_d)):
         total_d_str += total_d[i]
         counts += 1
         if counts == 3:
-            total_d_str += ","
-            counts = 0
+            if i+1 == len(total_d):
+                pass
+            else:
+                total_d_str += ","
+                counts = 0
     total_d_str = total_d_str[::-1]
     Label(total_d_frm, text="Total Death:", fg="white", bg="#f33534", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
     Label(total_d_frm, text=total_d_str, fg="white", bg="#f33534", font="verdana 25").grid(row=1, column=0, sticky='se')
     total_d_frm.grid(row=2, column=0, sticky="news", padx=20, pady=20)
 
+    Label(info_frm, text="Source: Ministry of Public Health", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
+
+def ReportCovid19GlobalPage():
+    global response, info_frm
+    report_glb_page = Frame(root, bg="red")
+    report_glb_page.rowconfigure(0, weight=1)
+    report_glb_page.rowconfigure(1, weight=3)
+    report_glb_page.columnconfigure(0, weight=1)
+    report_glb_page.grid(row=0, column=0, rowspan=2, sticky="news")
+
+    head = Frame(report_glb_page, bg="#daeffd")
+    head.rowconfigure(0, weight=1)
+    head.rowconfigure(1, weight=5)
+    head.columnconfigure((0,1,2), weight=1)
+    head.grid(row=0, column=0, sticky="news")
+
+    info_frm = Frame(report_glb_page, bg="#daeffd")
+    info_frm.rowconfigure((0,1,2,3,4), weight=1)
+    info_frm.columnconfigure((0,1), weight=1)
+    info_frm.grid(row=1, column=0, sticky="news")
+
+    Button(head, image=go_back_img, bg="#dde0fa", command=report_glb_page.destroy).grid(row=0, column=0, sticky="news")
+    Label(head, text="Global", fg="black", bg="#808cff", font="verdana 15 bold").grid(row=0, column=1, sticky="news")
+    Label(head, text="                ", fg="black", bg="#dde0fa", font="verdana 15 bold").grid(row=0, column=2, sticky="news")
+    
+    response = requests.get("https://disease.sh/v3/covid-19/countries")
+    response = response.json()
+    countries_list = [response[i]["country"] for i in range(len(response))]
+    selected_country.set("Please Select Country")
+    combobox = Combobox(head, textvariable=selected_country, values=countries_list, font="verdana 20", state="readonly")
+    combobox.bind("<<ComboboxSelected>>", Country_selected)
+    combobox.grid(row=1, column=0, columnspan=3)
+
+
+def Country_selected(e):
+    info = []
+    for i in range(len(response)):
+        if response[i]["country"] == selected_country.get():
+            info.append(response[i])
+    info = info[0]
+    
+    # ? Total Cases
+    total_frm = Frame(info_frm, bg="#fd8888")
+    total_frm.rowconfigure((0,1), weight=1)
+    total_frm.columnconfigure(0, weight=1)
+    total = str(info["cases"])[::-1]
+    total_case_str = ""
+    counts = 0
+    for i in range(len(total)):
+        total_case_str += total[i]
+        counts += 1
+        if counts == 3:
+            if i+1 == len(total):
+                pass
+            else:
+                total_case_str += ","
+                counts = 0
+    total_case_str = total_case_str[::-1]
+    Label(total_frm, text="Total Confirmed Cases:", fg="white", bg="#fd8888", font="verdana 19").grid(row=0, column=0, sticky='nw', padx=5, pady=5)
+    Label(total_frm, text=total_case_str, fg="white", bg="#fd8888", font="verdana 40").grid(row=1, column=0, sticky='e')
+    total_frm.grid(row=0, column=0, columnspan=2, sticky="news", padx=20)
+
+    # ? Recovery
+    recov_frm = Frame(info_frm, bg="#84e756")
+    recov_frm.rowconfigure((0,1), weight=1)
+    recov_frm.columnconfigure(0, weight=1)
+    recov = str(info["todayRecovered"])[::-1]
+    recov_str = ""
+    counts = 0
+    for i in range(len(recov)):
+        recov_str += recov[i]
+        counts += 1
+        if counts == 3:
+            if i+1 == len(recov):
+                pass
+            else:
+                recov_str += ","
+                counts = 0
+    recov_str = recov_str[::-1]
+    Label(recov_frm, text="Today Recovery:", fg="white", bg="#84e756", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
+    Label(recov_frm, text=recov_str, fg="white", bg="#84e756", font="verdana 25").grid(row=1, column=0, sticky='se')
+    recov_frm.grid(row=1, column=0, sticky="news", padx=20, pady=20)
+
+    # ? Today Cases
+    td_frm = Frame(info_frm, bg="#808cff")
+    td_frm.rowconfigure((0,1), weight=1)
+    td_frm.columnconfigure(0, weight=1)
+    td_case = str(info["todayCases"])[::-1]
+    td_case_str = ""
+    counts = 0
+    for i in range(len(td_case)):
+        td_case_str += td_case[i]
+        counts += 1
+        if counts == 3:
+            if i+1 == len(td_case):
+                pass
+            else:
+                td_case_str += ","
+                counts = 0
+    td_case_str = td_case_str[::-1]
+    Label(td_frm, text="Today Case:", fg="white", bg="#808cff", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
+    Label(td_frm, text=td_case_str, fg="white", bg="#808cff", font="verdana 25").grid(row=1, column=0, sticky='se')
+    td_frm.grid(row=1, column=1, sticky="news", padx=20, pady=20)
+
+    # ? Today death
+    today_d_frm = Frame(info_frm, bg="gray")
+    today_d_frm.rowconfigure((0,1), weight=1)
+    today_d_frm.columnconfigure(0, weight=1)
+    td_d_case = str(info["todayDeaths"])[::-1]
+    td_d_case_str = ""
+    counts = 0
+    for i in range(len(td_d_case)):
+        td_d_case_str += td_d_case[i]
+        counts += 1
+        if counts == 3:
+            if i+1 == len(td_d_case):
+                pass
+            else:
+                td_d_case_str += ","
+                counts = 0
+    td_d_case_str = td_d_case_str[::-1]
+    Label(today_d_frm, text="Today Death:", fg="white", bg="gray", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
+    Label(today_d_frm, text=td_d_case_str, fg="white", bg="gray", font="verdana 25").grid(row=1, column=0, sticky='se')
+    today_d_frm.grid(row=2, column=1, sticky="news", padx=20, pady=20)
+
+    # ? Total death
+    total_d_frm = Frame(info_frm, bg="#f33534")
+    total_d_frm.rowconfigure((0,1), weight=1)
+    total_d_frm.columnconfigure(0, weight=1)
+    total_d = str(info["deaths"])[::-1]
+    total_d_str = ""
+    counts = 0
+    for i in range(len(total_d)):
+        total_d_str += total_d[i]
+        counts += 1
+        if counts == 3:
+            if i+1 == len(total_d):
+                pass
+            else:
+                total_d_str += ","
+                counts = 0
+    total_d_str = total_d_str[::-1]
+    Label(total_d_frm, text="Total Death:", fg="white", bg="#f33534", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
+    Label(total_d_frm, text=total_d_str, fg="white", bg="#f33534", font="verdana 25").grid(row=1, column=0, sticky='se')
+    total_d_frm.grid(row=2, column=0, sticky="news", padx=20, pady=20)
+
+    Label(info_frm, text="*ข้อมูลอาจจะยังไม่ได้รับการอัพเดทในบ้างประเทศ*", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
+    Label(info_frm, text="Source: disease.sh - Open Disease Data API", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=4, column=0, columnspan=2)
+
 
 def OpenMap():
     url = 'https://mohpromtstation.moph.go.th/maps'
     webbrowser.open(url)
+
+
+def chatbot(): 
+    global chatbotfrm,top,lower,entry_chatbot,Button_send
+    chatbotfrm = Text(root,bg="#daeffd")
+    chatbotfrm.rowconfigure(0,weight=1)
+    chatbotfrm.rowconfigure(1,weight=4)
+    chatbotfrm.rowconfigure(2,weight=2)
+    chatbotfrm.columnconfigure((0,1),weight=2)
+    chatbotfrm.place(x=0,y=0,width=w,height=h)
+    Label(chatbotfrm, text="ChatBot", fg="#808cff", bg="#daeffd", font="verdana 40").grid(row=0,column=0,columnspan=2,sticky="news")
+    
+    top = Text(chatbotfrm,bg='#daeffd', fg="black", font="verdana 15",width=200,height=2)
+    top.columnconfigure(0,weight=1)
+    top.grid(row=1,column=0,sticky='news')
+    scrollbar = Scrollbar(top)
+    scrollbar.pack(side=RIGHT,fill="y")
+    
+    right = Frame(chatbotfrm,bg="#daeffd")
+    right.columnconfigure((0,1,2,3,4),weight=1)
+    right.grid(row=2,column=0,sticky='news',rowspan=7)
+    Label(right,text="สอบถามกดเลข",bg="#daeffd",fg="black", font="verdana 15").grid(row=0,column=0,sticky="w")
+    Label(right,text="1.ถ้าติดโควิด19จะทำยังไง : กด1",bg="#daeffd",fg="black", font="verdana 15").grid(row=1,column=0,sticky="w")
+    Label(right,text="2.วัคซีนในประเทศไทย : กด2",bg="#daeffd",fg="black", font="verdana 15").grid(row=2,column=0,sticky="w")
+    Label(right,text="3.ผู้ที่เคยติดโควิด19มาก่อน ยังจำเป็นต้องได้รับวัคซีนโควิด 19 หรือไม่ :กด3",bg="#daeffd",fg="black", font="verdana 15").grid(row=3,column=0,sticky="w")
+    Label(right,text="4.อาการเบื้องต้นของโควิด : กด4",bg="#daeffd",fg="black", font="verdana 15").grid(row=4,column=0,sticky="w")
+    
+
+    lower = Text(chatbotfrm,bg='#daeffd')
+    lower.columnconfigure((0,1),weight=1)
+    lower.grid(row=3,column=0,columnspan=1,sticky='news',rowspan=7)
+    entry_chatbot=Entry(lower,textvariable=spy_message)
+    entry_chatbot.grid(row=1,column=0,ipadx=150)
+    Button_send = Button(lower,text="Send",bg="#808cff",fg="white",command=send)
+    Button_send.grid(row=1,column=1,columnspan=2,ipadx=30)
+    Button(chatbotfrm,image=go_back_img,bg="#808cff",command=chatbotfrm.destroy).grid(row=0,column=0,sticky="nw",ipadx=30)
+    entry_chatbot.focus_force()
+
+
+def send():
+    send="You => "+spy_message.get()
+    top.insert(END,"\n"+send)
+    if(entry_chatbot.get()=="1"): 
+        top.insert(END,"\n" +"Chatbot ==> 1.เตรียมเอกสารต้องใช้ เช่น บัตร ปชช ผลตรวจCOVID19\nและแจ้งหมายเลขโทรศัพท์ของตน ทางหน่วยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดคนในครอบครัวและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5.หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้\n")
+    elif(entry_chatbot.get()=="2"):
+        top.insert(END,"\n"+"Chatbot ==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine\n")
+    elif(entry_chatbot.get()=="3"):
+        top.insert(END,"\n"+"Chatbot ==> แม้จะมีภูมิคุ้มกันต่อเชื้อไวรัสโควิด19ในร่างกายแต่ยังมี\nโอกาสติดเชื้อซ้ำได้ ดังนั้นจึงควรได้รับวัคซีน\n")
+    elif(entry_chatbot.get()=="4"):
+        top.insert(END,"\n"+"Chatbot ==> -ไม่มีอาการ\n-มีไข้/วัดอุณหภูมิได้ 37.5 C ขึ้นไป\n-ไอ มีน้ำมูก เจ็บคอ\n-ถ่ายเหลว\n-จมูกไม่ได้กลิ่น ลิ้นไม่รับรส-\n-ตาแดง มีผื่น\n-ไม่มีโรคประจำตัวร่วม\n-หายใจปกติ ปอดไม่อักเสบ\n-ไม่มีปัจจัยเสี่ยงต่อการเป็นโรครุนแรง / โรคร่วมสำคัญ\n")
+    else : 
+        top.insert(END,"\nChatbot ==> กรุณาใส่ข้อความใหม่\n")
+        entry_chatbot.focus_force()
+    entry_chatbot.delete(0,END)
+    entry_chatbot.focus_force()
 
 
 if platform == "darwin":
@@ -561,8 +784,6 @@ else:
 
 CreatedConnection()
 root = CreateWindows()
-
-go_back_img = PhotoImage(file="images/return.png").subsample(2,2)
 
 # ! login spies
 gmail_spy = StringVar()
@@ -584,6 +805,11 @@ fg_gmail_spy = StringVar()
 verif_spy = StringVar()
 fg_newpwd_spy = StringVar()
 fg_cfnewpwd_spy = StringVar()
+
+# ! Report Global spy
+selected_country = StringVar()
+
+go_back_img = PhotoImage(file="images/return.png").subsample(2,2)
 img_bot = PhotoImage(file="images/icon_bot.png").subsample(10,10)
 img_earth = PhotoImage(file="images/icon_earth.png").subsample(20,20)
 img_home = PhotoImage(file="images/icon_home.png").subsample(20,20)
@@ -591,9 +817,11 @@ img_lupa = PhotoImage(file="images/icon_lupa.png").subsample(20,20)
 img_map = PhotoImage(file="images/icon_map.png").subsample(20,20)
 img_out = PhotoImage(file="images/icon_out.png").subsample(20,20)    
 
-
-
-
+#spy chatbot 
+spy_message = StringVar()
+spy_send = StringVar()
 
 LoginPage(root)
 root.mainloop()
+cursor.close()
+conn.close()
