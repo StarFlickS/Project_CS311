@@ -12,7 +12,6 @@ v3: Add ReportCovid19 In Thailand Page, Add Menu page, Add open map feature
 v4: Add ReportCovidGlobalPage, Add chatbot
 '''
 
-
 from sys import platform
 import random 
 import smtplib
@@ -417,12 +416,12 @@ def menufame(result):
     mf_frm.columnconfigure((0,1,2),weight=1)
     mf_frm.grid(row=0, rowspan=2, column=0,sticky="news",padx=10, pady=150)
     
-    Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_home,compound=LEFT, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
-    Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=LEFT, borderless=1, command=ReportCovid19GlobalPage).grid(row=0,column=1, sticky="news", pady=20)
-    Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=LEFT, borderless=1).grid(row=0,column=2, sticky="news", padx=20, pady=20)
-    Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=LEFT, command=OpenMap, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
-    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=LEFT, borderless=1,command=chatbot).grid(row=1,column=1, sticky="news", pady=10)
-    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=LEFT, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
+    Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_home,compound=TOP, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
+    Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=TOP, borderless=1, command=ReportCovid19GlobalPage).grid(row=0,column=1, sticky="news", pady=20)
+    Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=TOP, borderless=1).grid(row=0,column=2, sticky="news", padx=20, pady=20)
+    Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=TOP, command=OpenMap, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
+    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=TOP, borderless=1,command=chatbot).grid(row=1,column=1, sticky="news", pady=10)
+    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=TOP, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
 
 
 def logout():
