@@ -769,7 +769,7 @@ def send():
     elif(entry_chatbot.get()=="4"):
         top.insert(END,"\n"+"Chatbot ==> -ไม่มีอาการ\n-มีไข้/วัดอุณหภูมิได้ 37.5 C ขึ้นไป\n-ไอ มีน้ำมูก เจ็บคอ\n-ถ่ายเหลว\n-จมูกไม่ได้กลิ่น ลิ้นไม่รับรส-\n-ตาแดง มีผื่น\n-ไม่มีโรคประจำตัวร่วม\n-หายใจปกติ ปอดไม่อักเสบ\n-ไม่มีปัจจัยเสี่ยงต่อการเป็นโรครุนแรง / โรคร่วมสำคัญ\n")
     else : 
-        top.insert(END,"\nChatbot ==> กรุณาใส่ข้อความใหม่")
+        top.insert(END,"\nChatbot ==> กรุณาใส่ข้อความใหม่\n")
         entry_chatbot.focus_force()
     entry_chatbot.delete(0,END)
     entry_chatbot.focus_force()
