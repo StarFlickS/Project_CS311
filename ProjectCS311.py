@@ -1,6 +1,6 @@
 '''
 Project CS311: Program for reporting COVID-19 cases and more
-Made by: Purin Singkaew, Niti
+Made by: Purin Singkaew, Niti Puangsema
 '''
 
 '''
@@ -418,10 +418,10 @@ def menufame(result):
     
     Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_home,compound=TOP, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
     Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=TOP, borderless=1, command=ReportCovid19GlobalPage).grid(row=0,column=1, sticky="news", pady=20)
-    Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=TOP, borderless=1).grid(row=0,column=2, sticky="news", padx=20, pady=20)
+    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=TOP, borderless=1,command=chatbot).grid(row=0,column=2, sticky="news", pady=20, padx=20)
     Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=TOP, command=OpenMap, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
-    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=TOP, borderless=1,command=chatbot).grid(row=1,column=1, sticky="news", pady=10)
-    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=TOP, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
+    Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=TOP, borderless=1).grid(row=1,column=1, sticky="news", pady=10)
+    Button(mf_frm,text="Exit",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=TOP, borderless=1, command=quit).grid(row=1,column=2, sticky="news", pady=10, padx=20)
 
 
 def logout():
@@ -722,7 +722,7 @@ def OpenMap():
 
 def chatbot(): 
     global chatbotfrm,top,lower,entry_chatbot,Button_send
-    chatbotfrm = Text(root,bg="#daeffd")
+    chatbotfrm = Frame(root,bg="#daeffd")
     chatbotfrm.rowconfigure(0,weight=1)
     chatbotfrm.rowconfigure(1,weight=4)
     chatbotfrm.rowconfigure(2,weight=2)
@@ -730,7 +730,7 @@ def chatbot():
     chatbotfrm.place(x=0,y=0,width=w,height=h)
     Label(chatbotfrm, text="ChatBot", fg="#808cff", bg="#daeffd", font="verdana 40").grid(row=0,column=0,columnspan=2,sticky="news")
     
-    top = Text(chatbotfrm,bg='#daeffd', fg="black", font="verdana 15",width=200,height=2)
+    top = Text(chatbotfrm,bg='#daeffd', fg="black", font="verdana 10",width=200,height=2)
     top.columnconfigure(0,weight=1)
     top.grid(row=1,column=0,sticky='news')
     scrollbar = Scrollbar(top)
@@ -739,11 +739,11 @@ def chatbot():
     right = Frame(chatbotfrm,bg="#daeffd")
     right.columnconfigure((0,1,2,3,4),weight=1)
     right.grid(row=2,column=0,sticky='news',rowspan=7)
-    Label(right,text="สอบถามกดเลข",bg="#daeffd",fg="black", font="verdana 15").grid(row=0,column=0,sticky="w")
-    Label(right,text="1.ถ้าติดโควิด19จะทำยังไง : กด1",bg="#daeffd",fg="black", font="verdana 15").grid(row=1,column=0,sticky="w")
-    Label(right,text="2.วัคซีนในประเทศไทย : กด2",bg="#daeffd",fg="black", font="verdana 15").grid(row=2,column=0,sticky="w")
-    Label(right,text="3.ผู้ที่เคยติดโควิด19มาก่อน ยังจำเป็นต้องได้รับวัคซีนโควิด 19 หรือไม่ :กด3",bg="#daeffd",fg="black", font="verdana 15").grid(row=3,column=0,sticky="w")
-    Label(right,text="4.อาการเบื้องต้นของโควิด : กด4",bg="#daeffd",fg="black", font="verdana 15").grid(row=4,column=0,sticky="w")
+    Label(right,text="กดเลขหมายด้านล่าง หากมีข้อสงสัยเกี่ยวกับ",bg="#daeffd",fg="black", font="verdana 15").grid(row=0,column=0,sticky="w")
+    Label(right,text="1. ถ้าติดโควิด19จะทำยังไง",bg="#daeffd",fg="black", font="verdana 15").grid(row=1,column=0,sticky="w")
+    Label(right,text="2. อาการเบื้องต้นของโควิด",bg="#daeffd",fg="black", font="verdana 15").grid(row=2,column=0,sticky="w")
+    Label(right,text="3. ผู้ที่เคยติดโควิด19มาก่อน ยังจำเป็นต้องได้รับวัคซีนโควิด 19 หรือไม่",bg="#daeffd",fg="black", font="verdana 15").grid(row=3,column=0,sticky="w")
+    Label(right,text="4. วัคซีนในประเทศไทย",bg="#daeffd",fg="black", font="verdana 15").grid(row=4,column=0,sticky="w")
     
 
     lower = Text(chatbotfrm,bg='#daeffd')
@@ -762,11 +762,18 @@ def send():
     top.insert(END,"\n"+send)
     if(entry_chatbot.get()=="1"): 
         top.insert(END,"\n" +"Chatbot ==> 1.เตรียมเอกสารต้องใช้ เช่น บัตร ปชช ผลตรวจCOVID19\nและแจ้งหมายเลขโทรศัพท์ของตน ทางหน่วยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดคนในครอบครัวและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5.หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้\n")
-    elif(entry_chatbot.get()=="2"):
-        top.insert(END,"\n"+"Chatbot ==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine\n")
+    elif(entry_chatbot.get()=="4"):
+        top.insert(END,"\n"+'''Chatbot ==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 6 ชนิด คือ
+        1.วัคซีนโควิดซิโนแวค (Sinovac) อย.อนุมัติเมื่อ 27 กุมภาพันธ์ 2564
+        2.วัคซีนโควิดแอสตราเซเนก้า (AstraZeneca) อย.อนุมัติเมื่อ 20 มกราคม 2564
+        3.วัคซีนโควิดจอห์นสัน แอนด์ จอห์นสัน (Johnson & Johnson) อย.อนุมัติเมื่อ 25 มีนาคม 2564
+        4.วัคซีนโควิดโมเดอร์นา (Moderna) อย.อนุมัติเมื่อ 13 พฤษภาคม 2564
+        5.วัคซีนโควิดซิโนฟาร์ม (Sinopharm) อย.อนุมัติเมื่อ 28 พฤษภาคม 2564
+        6.วัคซีนโควิดไฟเซอร์ ไบโอเอ็นเทค (Pfizer/ BioNtech) อย.อนุมัติเมื่อ 24 มิถุนายน 2564
+''')
     elif(entry_chatbot.get()=="3"):
         top.insert(END,"\n"+"Chatbot ==> แม้จะมีภูมิคุ้มกันต่อเชื้อไวรัสโควิด19ในร่างกายแต่ยังมี\nโอกาสติดเชื้อซ้ำได้ ดังนั้นจึงควรได้รับวัคซีน\n")
-    elif(entry_chatbot.get()=="4"):
+    elif(entry_chatbot.get()=="2"):
         top.insert(END,"\n"+"Chatbot ==> -ไม่มีอาการ\n-มีไข้/วัดอุณหภูมิได้ 37.5 C ขึ้นไป\n-ไอ มีน้ำมูก เจ็บคอ\n-ถ่ายเหลว\n-จมูกไม่ได้กลิ่น ลิ้นไม่รับรส-\n-ตาแดง มีผื่น\n-ไม่มีโรคประจำตัวร่วม\n-หายใจปกติ ปอดไม่อักเสบ\n-ไม่มีปัจจัยเสี่ยงต่อการเป็นโรครุนแรง / โรคร่วมสำคัญ\n")
     else : 
         top.insert(END,"\nChatbot ==> กรุณาใส่ข้อความใหม่\n")
