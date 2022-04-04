@@ -17,7 +17,13 @@ from sys import platform
 import random
 import smtplib
 from email.message import EmailMessage
+<<<<<<< HEAD
 from tkinter.ttk import Combobox
+=======
+from turtle import width
+from unittest import TextTestResult
+from numpy import insert
+>>>>>>> chatbot
 import requests
 import webbrowser
 import sqlite3
@@ -92,6 +98,8 @@ def LoginPage(root):
     Button(bottom_frm, text="Forget password?", fg="black", font="verdana 15 bold", bg="white", borderless=1, command=ForgetPasswordPage).grid(row=1, column=1)
 
     gmail_ent.focus_force()
+    gmail_ent.insert(0,"nitipuangsema@gmail.com")
+    password_ent.insert(0,"123456")
 
 
 def RegistrationPage():
@@ -163,6 +171,7 @@ def RegistrationPage():
     Button(btn_frm, text="Sign Up", bg="lightgreen", fg="black", font="verdana 22 bold", borderless=1, command=SignUp_clicked).grid(row=0, column=1)
 
     fname_ent.focus_force()
+
 
 
 def ForgetPasswordPage():
@@ -406,7 +415,7 @@ def loginclicked():
 
 
 def menufame(result): 
-    global mf_frm
+    global mf_frm 
     header["text"] = "Username:"+" "+result[2]+" "+result[3]
     
     mf_frm = Frame(root, bg="white")
@@ -418,7 +427,7 @@ def menufame(result):
     Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=LEFT, borderless=1, command=ReportCovid19GlobalPage).grid(row=0,column=1, sticky="news", pady=20)
     Button(mf_frm,text="list",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_lupa,compound=LEFT, borderless=1).grid(row=0,column=2, sticky="news", padx=20, pady=20)
     Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=LEFT, command=OpenMap, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
-    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=LEFT, borderless=1).grid(row=1,column=1, sticky="news", pady=10)
+    Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=LEFT, borderless=1,command=chatbot).grid(row=1,column=1, sticky="news", pady=10)
     Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=LEFT, borderless=1).grid(row=1,column=2, sticky="news", padx=20, pady=10)
 
 
@@ -716,6 +725,49 @@ def OpenMap():
     url = 'https://mohpromtstation.moph.go.th/maps'
     webbrowser.open(url)
 
+def chatbot(): 
+    global chatbotfrm,top,lower,entry_chatbot,Button_send
+    chatbotfrm = Text(root,bg="#daeffd")
+    chatbotfrm.rowconfigure((0,1,),weight=1)
+    chatbotfrm.rowconfigure(1,weight=4)
+    chatbotfrm.columnconfigure((0), weight=2)
+    chatbotfrm.place(x=0,y=0,width=w,height=h)
+    Label(chatbotfrm, text="COVID19", fg="#808cff", bg="#daeffd", font="verdana 40").grid(row=0,column=0,columnspan=2,sticky="news")
+    
+    top = Text(chatbotfrm,bg='#daeffd')
+    top.columnconfigure((0,1,2,3),weight=1)
+    top.grid(row=1,column=0,sticky='news',rowspan=7)
+
+    lower = Text(chatbotfrm,bg='#daeffd')
+    lower.columnconfigure((0,1),weight=1)
+    lower.grid(row=2,column=0,columnspan=2,sticky='news',rowspan=7)
+    entry_chatbot=Entry(lower,textvariable=spy_message)
+    entry_chatbot.grid(row=1,column=0,ipadx=150)
+    Button_send = Button(lower,text="Send",bg="#808cff",fg="white",command=send)
+    Button_send.grid(row=1,column=1,columnspan=2,ipadx=30)
+    Button(chatbotfrm,image=go_back_img,bg="#808cff",command=chatbotfrm.destroy).grid(row=0,column=0,sticky="nw",ipadx=30)
+    entry_chatbot.focus_force()
+
+def send():
+    send="You =>"+spy_message.get()
+    top.insert(END,"\n"+send)
+    if(entry_chatbot.get()=="ถ้าติดโควิด19จะทำยังไง"): 
+        top.insert(END,"\n" +"Chatbot==> 1.เตรียมเอกสราต้องใช้ เช่น บัรต ปชช ผลตรวจCOVID\nและแจ้าหมายเลขโทรศัพท์ของตน ทางหน่อยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดครอบควรและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้")
+    elif(entry_chatbot.get()=="ถ้าติดโควิดจะทำยังไง"):
+        top.insert(END,"\n" +"Chatbot==> 1.เตรียมเอกสราต้องใช้ เช่น บัรต ปชช ผลตรวจCOVID\nและแจ้าหมายเลขโทรศัพท์ของตน ทางหน่อยงาน\n2.งดออกจากที่พักหรือเดินทางข้ามจังหวัด\n3.งดใกล้ชิดครอบควรและผู้อื่น\n4.สวมแมสก์ตลอดเวลา\n5หากมีไข้ให้รับประทานยาแล้วเช็ดตัวเพื่อลดไข้")
+    elif(entry_chatbot.get()=="วัคซีนโควิด19ในประเทศไทย"):
+        top.insert(END,"\n"+"Chatbot==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine")
+    elif(entry_chatbot.get()=="วัคซีน ในประเทศไทย"):
+        top.insert(END,"\n"+"Chatbot==> วัคซีนโควิด19ที่มีให้บริการในประเทศไทย มี 2 ชนิด คือ\n1.AstraZeneca)\n2.CoronaVac หรือ Sinovac COVID-19 vaccine")
+    elif(entry_chatbot.get()=="สำหรับผู้ที่เคยมีประวัติเป็นโรคโควิด19มาก่อน ยังจำเป็นต้องได้รับวัคซีนโควิด 19 หรือไม่"):
+        top.insert(END,"\n"+"Chatbot==> แม้จะมีภูมิคุ้มกันต่อเชื้อไวรัสโควิด19ในร่างกายแต่ยังมีโอกาสติดเชื้อซ้ำได้ ดังนั้นจึงควรได้รับวัคซีน")
+    elif(entry_chatbot.get()=="อาการเบื้องตอนของโควิด"):
+        top.insert(END,"\n"+"Chatbot==> -ไม่มีอาการ\n-มีไข้/วัดอุณหภูมิได้ 37.5 C ขึ้นไป\n-ไอ มีน้ำมูก เจ็บคอ\n-ถ่ายเหลว\n-จมูกไม่ได้กลิ่น ลิ้นไม่รับรส-\n-ตาแดง มีผื่น\n-ไม่มีโรคประจำตัวร่วม\n-หายใจปกติ ปอดไม่อักเสบ\n-ไม่มีปัจจัยเสี่ยงต่อการเป็นโรครุนแรง / โรคร่วมสำคัญ")
+    else : 
+        top.insert(END,"Chatbot==> กรุณาใส่ข้อความใหม่")
+        entry_chatbot.focus_force()
+    entry_chatbot.delete(0,END)
+
 
 if platform == "darwin":
     w = 500
@@ -760,7 +812,15 @@ img_lupa = PhotoImage(file="images/icon_lupa.png").subsample(20,20)
 img_map = PhotoImage(file="images/icon_map.png").subsample(20,20)
 img_out = PhotoImage(file="images/icon_out.png").subsample(20,20)    
 
+#spy chatbot 
+spy_message = StringVar()
 
+<<<<<<< HEAD
+=======
+
+spy_send = StringVar()
+
+>>>>>>> chatbot
 LoginPage(root)
 root.mainloop()
 cursor.close()
