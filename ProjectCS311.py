@@ -582,7 +582,7 @@ def ReportCovid19GlobalPage():
     head.grid(row=0, column=0, sticky="news")
 
     info_frm = Frame(report_glb_page, bg="#daeffd")
-    info_frm.rowconfigure((0,1,2,3), weight=1)
+    info_frm.rowconfigure((0,1,2,3,4), weight=1)
     info_frm.columnconfigure((0,1), weight=1)
     info_frm.grid(row=1, column=0, sticky="news")
 
@@ -712,7 +712,8 @@ def Country_selected(e):
     Label(total_d_frm, text=total_d_str, fg="white", bg="#f33534", font="verdana 25").grid(row=1, column=0, sticky='se')
     total_d_frm.grid(row=2, column=0, sticky="news", padx=20, pady=20)
 
-    Label(info_frm, text="Source: disease.sh - Open Disease Data API", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
+    Label(info_frm, text="*ข้อมูลอาจจะยังไม่ได้รับการอัพเดทในบ้างประเทศ*", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
+    Label(info_frm, text="Source: disease.sh - Open Disease Data API", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=4, column=0, columnspan=2)
 
 def OpenMap():
     url = 'https://mohpromtstation.moph.go.th/maps'
