@@ -98,8 +98,6 @@ def LoginPage(root):
     Button(bottom_frm, text="Forget password?", fg="black", font="verdana 15 bold", bg="white", borderless=1, command=ForgetPasswordPage).grid(row=1, column=1)
 
     gmail_ent.focus_force()
-    gmail_ent.insert(0,"nitipuangsema@gmail.com")
-    password_ent.insert(0,"123456")
 
 
 def RegistrationPage():
@@ -815,12 +813,8 @@ img_out = PhotoImage(file="images/icon_out.png").subsample(20,20)
 #spy chatbot 
 spy_message = StringVar()
 
-<<<<<<< HEAD
-=======
-
 spy_send = StringVar()
 
->>>>>>> chatbot
 LoginPage(root)
 root.mainloop()
 cursor.close()
