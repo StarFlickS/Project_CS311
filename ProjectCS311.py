@@ -14,16 +14,16 @@ v4: Add ReportCovidGlobalPage, Add chatbot
 
 
 from sys import platform
-import random
-import smtplib
+import random 
+import smtplib # *
 from email.message import EmailMessage
 from tkinter.ttk import Combobox
-import requests
+import requests # *
 import webbrowser
 import sqlite3
 from tkinter import *
 from tkinter import messagebox
-from tkmacosx import Button
+from tkmacosx import Button # * 
 
 def CreatedConnection():
     global conn, cursor
@@ -595,7 +595,6 @@ def ReportCovid19GlobalPage():
     selected_country.set("Please Select Country")
     combobox = Combobox(head, textvariable=selected_country, values=countries_list, font="verdana 20", state="readonly")
     combobox.bind("<<ComboboxSelected>>", Country_selected)
-    combobox.current()
     combobox.grid(row=1, column=0, columnspan=3)
 
 
