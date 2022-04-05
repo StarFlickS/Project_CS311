@@ -18,7 +18,6 @@ import smtplib
 from email.message import EmailMessage
 from tkinter.ttk import Combobox
 import requests
-import requests
 import webbrowser
 import sqlite3
 from tkinter import *
