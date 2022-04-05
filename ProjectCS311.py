@@ -124,7 +124,7 @@ def RegistrationPage():
     lname_ent.grid(row=1, column=1, sticky='w')
 
     # ? Gmail
-    Label(ent_frm, text="Gmail:", bg="white", fg="black", font="verdana 15").grid(row=2, column=0, sticky='e')
+    Label(ent_frm, text="Email:", bg="white", fg="black", font="verdana 15").grid(row=2, column=0, sticky='e')
     gmail_ent = Entry(ent_frm, bg="#e9e4e4", fg="black", font="verdana 15", width=20, textvariable=rg_gmail_spy)
     gmail_ent.grid(row=2, column=1, sticky='w')
 
@@ -188,7 +188,7 @@ def ForgetPasswordPage():
     fg_page3_frm.columnconfigure((0,1), weight=1)
 
     # * Ent Frame widgets
-    Label(fg_page1_frm, text="Enter your Gmail:", bg="white", fg="black", font="verdana 15").grid(row=0, column=0, sticky='e')
+    Label(fg_page1_frm, text="Enter your Email:", bg="white", fg="black", font="verdana 15").grid(row=0, column=0, sticky='e')
     fg_gmail_ent = Entry(fg_page1_frm, bg="lightgray", fg="black", font="verdana 15", textvariable=fg_gmail_spy)
     fg_gmail_ent.grid(row=0, column=1, sticky='w')
     
@@ -202,13 +202,13 @@ def ForgetPasswordPage():
 def SentCode_clicked():
     global verif_code, verif_ent
     if fg_gmail_spy.get() == "":
-        messagebox.showwarning("Admin:", "Please enter your gmail.")
+        messagebox.showwarning("Admin:", "Please enter your Email.")
         fg_gmail_ent.focus_force()
     else:
         text = fg_gmail_ent.get()
         rest = abs(len(text) - 10)
         if text[rest::] != "@gmail.com" and text[rest-1::] != "@bumail.net":
-            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com or @bumail.net")
+            messagebox.showwarning("Admin:", "Please end your Email with @gmail.com or @bumail.net")
             fg_gmail_ent.focus()
             fg_gmail_ent.select_range(0, END)
         else:
@@ -241,7 +241,7 @@ def SentCode_clicked():
 
                 verif_ent.focus_force()
             else:
-                messagebox.showerror("Admin:", "This gmail hasn't sign up yet, please sign up before continue.")
+                messagebox.showerror("Admin:", "This Email hasn't sign up yet, please sign up before continue.")
                 fg_gmail_spy.set("")
                 fg_gmail_ent.focus_force()
 
@@ -254,7 +254,7 @@ def SignUp_clicked():
         messagebox.showwarning("Admin:", "Please enter your Last Name.")
         lname_ent.focus_force()
     elif rg_gmail_spy.get() == "":
-        messagebox.showwarning("Admin:", "Please enter your Gmail.")
+        messagebox.showwarning("Admin:", "Please enter your Email.")
         gmail_ent.focus_force()
     elif rg_phone_spy.get() == "":
         messagebox.showwarning("Admin:", "Please enter your Phone Number.")
@@ -273,14 +273,14 @@ def SignUp_clicked():
         text = rg_gmail_spy.get()
         rest = abs(len(text) - 10)
         if text[rest::] != "@gmail.com" and text[rest-1::] != "@bumail.net":
-            messagebox.showwarning("Admin:", "Please end your gmail with @gmail.com or @bumail.net")
+            messagebox.showwarning("Admin:", "Please end your Email with @gmail.com or @bumail.net")
             gmail_ent.focus_force()
         else:
             sql = "SELECT * FROM users WHERE user_gmail = ?"
             cursor.execute(sql, [rg_gmail_spy.get()])
             res = cursor.fetchone()
             if res:
-                messagebox.showerror("Admin:", "This Gmail already exist, please try again.")
+                messagebox.showerror("Admin:", "This Email already exist, please try again.")
                 gmail_ent.focus_force()
                 gmail_ent.select_range(0, END)
             else:
@@ -389,7 +389,7 @@ def ExitForgerPasswordPage(page: int):
 
 def loginclicked():
     if gmail_spy.get() == "":
-        messagebox.showwarning("Admin:", "Please enter your Gmail.")
+        messagebox.showwarning("Admin:", "Please enter your Email.")
         gmail_ent.focus_force()
     else:
         if pwd_spy.get() == "":
@@ -403,7 +403,7 @@ def loginclicked():
                 messagebox.showinfo("Admin:", "Login Successfully.")
                 menufame(result)
             else:
-                messagebox.showerror("Admin:", "Gmail or Password incorrect, please try again.")
+                messagebox.showerror("Admin:", "Email or Password incorrect, please try again.")
                 gmail_spy.set("")
                 pwd_spy.set("")
                 gmail_ent.focus_force()
