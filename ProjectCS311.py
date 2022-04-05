@@ -73,7 +73,7 @@ def LoginPage(root):
     header.grid(row=0, column=0, sticky='w', padx=45, pady=50)
 
     # * Gmail entry
-    Label(ent_frm, text="Gmail:", bg="white", fg="black", font="verdana 20 bold").grid(row=0, column=0, sticky='nw', padx=30)
+    Label(ent_frm, text="Email:", bg="white", fg="black", font="verdana 20 bold").grid(row=0, column=0, sticky='nw', padx=30)
     gmail_ent = Entry(ent_frm, textvariable=gmail_spy, bg="#e9e4e4", width=20, fg="black", font="verdana 20", justify=LEFT, borderwidth=0, highlightthickness=0)
     gmail_ent.grid(row=0, column=0)
 
