@@ -32,7 +32,7 @@ def CreatedConnection():
 
 def CreateWindows():
     root = Tk()
-    root.title("Project CS311: Program for reporting COVID-19 cases and more")
+    root.title("หมอไม่พร้อม")
     x = root.winfo_screenwidth() / 2 - w / 2
     y = root.winfo_screenheight() / 2 - h / 2
     root.geometry("%dx%d+%d+%d" %(w,h,x,y))
