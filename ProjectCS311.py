@@ -9,7 +9,7 @@ Version = Pre Release
 v1: Making windows frames and widgets, prepare for more advance features, added login page
 v2: Added Login feature, connect to database, registration, forget password
 v3: Add ReportCovid19 In Thailand Page, Add Menu page, Add open map feature
-v4: Add ReportCovidGlobalPage, Add chatbot
+v4: Add ReportCovid19ProvincesPage, Add chatbot
 '''
 
 from sys import platform
@@ -417,7 +417,7 @@ def menufame(result):
     mf_frm.grid(row=0, rowspan=2, column=0,sticky="news",padx=10, pady=150)
     
     Button(mf_frm,text="My country",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_home,compound=TOP, command=ReportCovid19THPage, borderless=1).grid(row=0,column=0, sticky="news", pady=20, padx=20)
-    Button(mf_frm,text="All",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=TOP, borderless=1, command=ReportCovid19GlobalPage).grid(row=0,column=1, sticky="news", pady=20)
+    Button(mf_frm,text="Province",fg="#D6E5FA",bg="#808cff",font="verdana 15",image=img_earth,compound=TOP, borderless=1, command=ReportCovid19ProvincesPage).grid(row=0,column=1, sticky="news", pady=20)
     Button(mf_frm,text="Chatbot",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_bot,compound=TOP, borderless=1,command=chatbot).grid(row=0,column=2, sticky="news", pady=20, padx=20)
     Button(mf_frm,text="Station",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_map,compound=TOP, command=OpenMap, borderless=1).grid(row=1,column=0, sticky="news", padx=20, pady=10)
     Button(mf_frm,text="Log out",fg="#D6E5FA",bg="#808cff",font="verdana 14",image=img_out,command=logout,compound=TOP, borderless=1).grid(row=1,column=1, sticky="news", pady=10)
@@ -567,42 +567,42 @@ def ReportCovid19THPage():
 
     Label(info_frm, text="Source: Ministry of Public Health", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
 
-def ReportCovid19GlobalPage():
+def ReportCovid19ProvincesPage():
     global response, info_frm
-    report_glb_page = Frame(root, bg="red")
-    report_glb_page.rowconfigure(0, weight=1)
-    report_glb_page.rowconfigure(1, weight=3)
-    report_glb_page.columnconfigure(0, weight=1)
-    report_glb_page.grid(row=0, column=0, rowspan=2, sticky="news")
+    report_pv_page = Frame(root, bg="red")
+    report_pv_page.rowconfigure(0, weight=1)
+    report_pv_page.rowconfigure(1, weight=3)
+    report_pv_page.columnconfigure(0, weight=1)
+    report_pv_page.grid(row=0, column=0, rowspan=2, sticky="news")
 
-    head = Frame(report_glb_page, bg="#daeffd")
+    head = Frame(report_pv_page, bg="#daeffd")
     head.rowconfigure(0, weight=1)
     head.rowconfigure(1, weight=5)
     head.columnconfigure((0,1,2), weight=1)
     head.grid(row=0, column=0, sticky="news")
 
-    info_frm = Frame(report_glb_page, bg="#daeffd")
-    info_frm.rowconfigure((0,1,2,3,4), weight=1)
+    info_frm = Frame(report_pv_page, bg="#daeffd")
+    info_frm.rowconfigure((0,1,2,3), weight=1)
     info_frm.columnconfigure((0,1), weight=1)
     info_frm.grid(row=1, column=0, sticky="news")
 
-    Button(head, image=go_back_img, bg="#dde0fa", command=report_glb_page.destroy).grid(row=0, column=0, sticky="news")
-    Label(head, text="Global", fg="black", bg="#808cff", font="verdana 15 bold").grid(row=0, column=1, sticky="news")
+    Button(head, image=go_back_img, bg="#dde0fa", command=report_pv_page.destroy).grid(row=0, column=0, sticky="news")
+    Label(head, text="Province", fg="black", bg="#808cff", font="verdana 15 bold").grid(row=0, column=1, sticky="news")
     Label(head, text="                ", fg="black", bg="#dde0fa", font="verdana 15 bold").grid(row=0, column=2, sticky="news")
     
-    response = requests.get("https://disease.sh/v3/covid-19/countries")
+    response = requests.get("https://covid19.ddc.moph.go.th/api/Cases/today-cases-by-provinces")
     response = response.json()
-    countries_list = [response[i]["country"] for i in range(len(response))]
-    selected_country.set("Please Select Country")
-    combobox = Combobox(head, textvariable=selected_country, values=countries_list, font="verdana 20", state="readonly")
-    combobox.bind("<<ComboboxSelected>>", Country_selected)
+    provinces_list = [response[i]["province"] for i in range(len(response))]
+    selected_province.set("Please select province")
+    combobox = Combobox(head, textvariable=selected_province, values=provinces_list, font="verdana 20", state="readonly")
+    combobox.bind("<<ComboboxSelected>>", Province_selected)
     combobox.grid(row=1, column=0, columnspan=3)
 
 
-def Country_selected(e):
+def Province_selected(e):
     info = []
     for i in range(len(response)):
-        if response[i]["country"] == selected_country.get():
+        if response[i]["province"] == selected_province.get():
             info.append(response[i])
     info = info[0]
     
@@ -610,7 +610,7 @@ def Country_selected(e):
     total_frm = Frame(info_frm, bg="#fd8888")
     total_frm.rowconfigure((0,1), weight=1)
     total_frm.columnconfigure(0, weight=1)
-    total = str(info["cases"])[::-1]
+    total = str(info["total_case"])[::-1]
     total_case_str = ""
     counts = 0
     for i in range(len(total)):
@@ -627,32 +627,32 @@ def Country_selected(e):
     Label(total_frm, text=total_case_str, fg="white", bg="#fd8888", font="verdana 40").grid(row=1, column=0, sticky='e')
     total_frm.grid(row=0, column=0, columnspan=2, sticky="news", padx=20)
 
-    # ? Recovery
-    recov_frm = Frame(info_frm, bg="#84e756")
-    recov_frm.rowconfigure((0,1), weight=1)
-    recov_frm.columnconfigure(0, weight=1)
-    recov = str(info["todayRecovered"])[::-1]
-    recov_str = ""
+    # ? New_case (abroad)
+    new_ex_frm = Frame(info_frm, bg="#84e756")
+    new_ex_frm.rowconfigure((0,1), weight=1)
+    new_ex_frm.columnconfigure(0, weight=1)
+    new_ex = str(info["new_case_excludeabroad"])[::-1]
+    new_ex_str = ""
     counts = 0
-    for i in range(len(recov)):
-        recov_str += recov[i]
+    for i in range(len(new_ex)):
+        new_ex_str += new_ex[i]
         counts += 1
         if counts == 3:
-            if i+1 == len(recov):
+            if i+1 == len(new_ex):
                 pass
             else:
-                recov_str += ","
+                new_ex_str += ","
                 counts = 0
-    recov_str = recov_str[::-1]
-    Label(recov_frm, text="Today Recovery:", fg="white", bg="#84e756", font="verdana 20").grid(row=0, column=0, sticky="nw", padx=5, pady=5)
-    Label(recov_frm, text=recov_str, fg="white", bg="#84e756", font="verdana 25").grid(row=1, column=0, sticky='se')
-    recov_frm.grid(row=1, column=0, sticky="news", padx=20, pady=20)
+    new_ex_str = new_ex_str[::-1]
+    Label(new_ex_frm, text="New Case:\n(not include from other countries)", fg="white", bg="#84e756", font="verdana 15", justify=LEFT).grid(row=0, column=0, sticky="nw", padx=5, pady=5)
+    Label(new_ex_frm, text=new_ex_str, fg="white", bg="#84e756", font="verdana 25").grid(row=1, column=0, sticky='se')
+    new_ex_frm.grid(row=1, column=0, sticky="news", padx=20, pady=20)
 
     # ? Today Cases
     td_frm = Frame(info_frm, bg="#808cff")
     td_frm.rowconfigure((0,1), weight=1)
     td_frm.columnconfigure(0, weight=1)
-    td_case = str(info["todayCases"])[::-1]
+    td_case = str(info["new_case"])[::-1]
     td_case_str = ""
     counts = 0
     for i in range(len(td_case)):
@@ -673,7 +673,7 @@ def Country_selected(e):
     today_d_frm = Frame(info_frm, bg="gray")
     today_d_frm.rowconfigure((0,1), weight=1)
     today_d_frm.columnconfigure(0, weight=1)
-    td_d_case = str(info["todayDeaths"])[::-1]
+    td_d_case = str(info["new_death"])[::-1]
     td_d_case_str = ""
     counts = 0
     for i in range(len(td_d_case)):
@@ -694,7 +694,7 @@ def Country_selected(e):
     total_d_frm = Frame(info_frm, bg="#f33534")
     total_d_frm.rowconfigure((0,1), weight=1)
     total_d_frm.columnconfigure(0, weight=1)
-    total_d = str(info["deaths"])[::-1]
+    total_d = str(info["total_death"])[::-1]
     total_d_str = ""
     counts = 0
     for i in range(len(total_d)):
@@ -711,8 +711,7 @@ def Country_selected(e):
     Label(total_d_frm, text=total_d_str, fg="white", bg="#f33534", font="verdana 25").grid(row=1, column=0, sticky='se')
     total_d_frm.grid(row=2, column=0, sticky="news", padx=20, pady=20)
 
-    Label(info_frm, text="*ข้อมูลอาจจะยังไม่ได้รับการอัพเดทในบ้างประเทศ*", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
-    Label(info_frm, text="Source: disease.sh - Open Disease Data API", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=4, column=0, columnspan=2)
+    Label(info_frm, text="Source: Ministry of Public Health", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
 
 
 def OpenMap():
@@ -814,7 +813,7 @@ fg_newpwd_spy = StringVar()
 fg_cfnewpwd_spy = StringVar()
 
 # ! Report Global spy
-selected_country = StringVar()
+selected_province = StringVar()
 
 go_back_img = PhotoImage(file="images/return.png").subsample(2,2)
 img_bot = PhotoImage(file="images/icon_bot.png").subsample(10,10)
