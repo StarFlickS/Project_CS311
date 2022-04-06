@@ -198,7 +198,6 @@ def ForgetPasswordPage():
     fg_gmail_ent.focus_force()
     
 
-
 def SentCode_clicked():
     global verif_code, verif_ent
     if fg_gmail_spy.get() == "":
@@ -566,6 +565,7 @@ def ReportCovid19THPage():
     total_d_frm.grid(row=2, column=0, sticky="news", padx=20, pady=20)
 
     Label(info_frm, text="Source: Ministry of Public Health", bg="#daeffd", fg="black", font="verdana 10 bold").grid(row=3, column=0, columnspan=2)
+
 
 def ReportCovid19ProvincesPage():
     global response, info_frm
