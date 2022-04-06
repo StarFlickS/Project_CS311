@@ -607,6 +607,7 @@ def Province_selected(e):
     for i in range(len(response)):
         if response[i]["province"] == selected_province.get():
             info.append(response[i])
+            break
     info = info[0]
     
     # ? Total Cases
