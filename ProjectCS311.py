@@ -226,7 +226,7 @@ def SentCode_clicked():
                 context = "Your verification code for change password is %s" %(verif_code)
                 msg.set_content(context)
                 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-                server.login("projectcs311@gmail.com", "1.3boxbox")
+                server.login("projectcs311@gmail.com", "pedzyf-2vycne-semTam")
                 server.send_message(msg)
                 server.quit()
                 messagebox.showinfo("Admin:", "Verification code has been sent to your email.")
@@ -386,7 +386,7 @@ def ExitForgerPasswordPage(page: int):
     fg_newpwd_spy.set("")
     fg_cfnewpwd_spy.set("")
 
-
+  
 def loginclicked():
     if gmail_spy.get() == "":
         messagebox.showwarning("Admin:", "Please enter your Email.")
