@@ -5,7 +5,7 @@ Made by: Purin Singkaew, Niti Puangsema
 
 '''
 Version des:
-Version = Release
+Version = Pre Release
 Github : https://github.com/StarFlickS/Project_CS311
 SSH : git@github.com:StarFlickS/Project_CS311.git
 v1: Making windows frames and widgets, prepare for more advance features, added login page
