@@ -11,6 +11,7 @@ v1: Making windows frames and widgets, prepare for more advance features, added 
 v2: Added Login feature, connect to database, registration, forget password
 v3: Add ReportCovid19 In Thailand Page, Add Menu page, Add open map feature
 v4: Add ReportCovid19ProvincesPage, Add chatbot
+v4.1: Add CorrectRangeOfUnit fucntion
 '''
 
 from sys import platform
@@ -761,18 +762,7 @@ def ReportCovid19THPage():
     total_frm.rowconfigure((0, 1), weight=1)
     total_frm.columnconfigure(0, weight=1)
     total = str(info["total_case"])[::-1]
-    total_case_str = ""
-    counts = 0
-    for i in range(len(total)):
-        total_case_str += total[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(total):
-                pass
-            else:
-                total_case_str += ","
-                counts = 0
-    total_case_str = total_case_str[::-1]
+    total_case_str = CorrectRangeOfUnit(total)
     Label(total_frm,
           text="Total Confirmed Cases:",
           fg="white",
@@ -790,18 +780,7 @@ def ReportCovid19THPage():
     recov_frm.rowconfigure((0, 1), weight=1)
     recov_frm.columnconfigure(0, weight=1)
     recov = str(info["new_recovered"])[::-1]
-    recov_str = ""
-    counts = 0
-    for i in range(len(recov)):
-        recov_str += recov[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(recov):
-                pass
-            else:
-                recov_str += ","
-                counts = 0
-    recov_str = recov_str[::-1]
+    recov_str = CorrectRangeOfUnit(recov)
     Label(recov_frm,
           text="Today Recovery:",
           fg="white",
@@ -819,18 +798,7 @@ def ReportCovid19THPage():
     td_frm.rowconfigure((0, 1), weight=1)
     td_frm.columnconfigure(0, weight=1)
     td_case = str(info["new_case"])[::-1]
-    td_case_str = ""
-    counts = 0
-    for i in range(len(td_case)):
-        td_case_str += td_case[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(td_case):
-                pass
-            else:
-                td_case_str += ","
-                counts = 0
-    td_case_str = td_case_str[::-1]
+    td_case_str = CorrectRangeOfUnit(td_case)
     Label(td_frm,
           text="Today Case:",
           fg="white",
@@ -848,18 +816,7 @@ def ReportCovid19THPage():
     today_d_frm.rowconfigure((0, 1), weight=1)
     today_d_frm.columnconfigure(0, weight=1)
     td_d_case = str(info["new_death"])[::-1]
-    td_d_case_str = ""
-    counts = 0
-    for i in range(len(td_d_case)):
-        td_d_case_str += td_d_case[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(td_d_case):
-                pass
-            else:
-                td_d_case_str += ","
-                counts = 0
-    td_d_case_str = td_d_case_str[::-1]
+    td_d_case_str = CorrectRangeOfUnit(td_d_case)
     Label(today_d_frm,
           text="Today Death:",
           fg="white",
@@ -877,18 +834,7 @@ def ReportCovid19THPage():
     total_d_frm.rowconfigure((0, 1), weight=1)
     total_d_frm.columnconfigure(0, weight=1)
     total_d = str(info["total_death"])[::-1]
-    total_d_str = ""
-    counts = 0
-    for i in range(len(total_d)):
-        total_d_str += total_d[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(total_d):
-                pass
-            else:
-                total_d_str += ","
-                counts = 0
-    total_d_str = total_d_str[::-1]
+    total_d_str = CorrectRangeOfUnit(total_d)
     Label(total_d_frm,
           text="Total Death:",
           fg="white",
@@ -968,18 +914,7 @@ def Province_selected(e):
     total_frm.rowconfigure((0, 1), weight=1)
     total_frm.columnconfigure(0, weight=1)
     total = str(info["total_case"])[::-1]
-    total_case_str = ""
-    counts = 0
-    for i in range(len(total)):
-        total_case_str += total[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(total):
-                pass
-            else:
-                total_case_str += ","
-                counts = 0
-    total_case_str = total_case_str[::-1]
+    total_case_str = CorrectRangeOfUnit(total)
     Label(total_frm,
           text="Total Confirmed Cases:",
           fg="white",
@@ -997,18 +932,7 @@ def Province_selected(e):
     new_ex_frm.rowconfigure((0, 1), weight=1)
     new_ex_frm.columnconfigure(0, weight=1)
     new_ex = str(info["new_case_excludeabroad"])[::-1]
-    new_ex_str = ""
-    counts = 0
-    for i in range(len(new_ex)):
-        new_ex_str += new_ex[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(new_ex):
-                pass
-            else:
-                new_ex_str += ","
-                counts = 0
-    new_ex_str = new_ex_str[::-1]
+    new_ex_str = CorrectRangeOfUnit(new_ex)
     Label(new_ex_frm,
           text="New Case:\n(not include from other countries)",
           fg="white",
@@ -1027,18 +951,7 @@ def Province_selected(e):
     td_frm.rowconfigure((0, 1), weight=1)
     td_frm.columnconfigure(0, weight=1)
     td_case = str(info["new_case"])[::-1]
-    td_case_str = ""
-    counts = 0
-    for i in range(len(td_case)):
-        td_case_str += td_case[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(td_case):
-                pass
-            else:
-                td_case_str += ","
-                counts = 0
-    td_case_str = td_case_str[::-1]
+    td_case_str = CorrectRangeOfUnit(td_case)
     Label(td_frm,
           text="Today Case:",
           fg="white",
@@ -1056,18 +969,7 @@ def Province_selected(e):
     today_d_frm.rowconfigure((0, 1), weight=1)
     today_d_frm.columnconfigure(0, weight=1)
     td_d_case = str(info["new_death"])[::-1]
-    td_d_case_str = ""
-    counts = 0
-    for i in range(len(td_d_case)):
-        td_d_case_str += td_d_case[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(td_d_case):
-                pass
-            else:
-                td_d_case_str += ","
-                counts = 0
-    td_d_case_str = td_d_case_str[::-1]
+    td_d_case_str = CorrectRangeOfUnit(td_d_case)
     Label(today_d_frm,
           text="Today Death:",
           fg="white",
@@ -1085,18 +987,7 @@ def Province_selected(e):
     total_d_frm.rowconfigure((0, 1), weight=1)
     total_d_frm.columnconfigure(0, weight=1)
     total_d = str(info["total_death"])[::-1]
-    total_d_str = ""
-    counts = 0
-    for i in range(len(total_d)):
-        total_d_str += total_d[i]
-        counts += 1
-        if counts == 3:
-            if i + 1 == len(total_d):
-                pass
-            else:
-                total_d_str += ","
-                counts = 0
-    total_d_str = total_d_str[::-1]
+    total_d_str = CorrectRangeOfUnit(total_d)
     Label(total_d_frm,
           text="Total Death:",
           fg="white",
@@ -1231,6 +1122,21 @@ def send():
         entry_chatbot.focus_force()
     entry_chatbot.delete(0, END)
     entry_chatbot.focus_force()
+
+
+def CorrectRangeOfUnit(number: str):
+    return_nums = ""
+    counts = 0
+    for i in range(len(number)):
+        return_nums += number[i]
+        counts += 1
+        if counts == 3:
+            if i + 1 == len(number):
+                pass
+            else:
+                return_nums += ","
+                counts = 0
+    return return_nums[::-1]
 
 
 if platform == "darwin":
