@@ -7,7 +7,7 @@ Version des:
 Version = Release
 Github : https://github.com/StarFlickS/Project_CS311
 SSH : git@github.com:StarFlickS/Project_CS311.git
-v1: Making windows frames and widgets, prepare for more advance features, added login page
+v1: Making windows frames and widgets, preparing for more advanced features, added login page
 v2: Added Login feature, connect to database, registration, forget password
 v3: Add ReportCovid19 In Thailand Page, Add Menu page, Add open map feature
 v4: Add ReportCovid19ProvincesPage, Add chatbot
