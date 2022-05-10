@@ -592,7 +592,6 @@ def ExitRegistrationPage():
 
 def ExitForgerPasswordPage(page: int):
     if page == 1:
-        header["text"] = "Sign In"
         fg_frm.destroy()
         fg_page1_frm.destroy()
     elif page == 2:
@@ -604,6 +603,7 @@ def ExitForgerPasswordPage(page: int):
         fg_page1_frm.destroy()
         fg_page2_frm.destroy()
         fg_page3_frm.destroy()
+    header["text"] = "Sign In"
     fg_gmail_spy.set("")
     verif_spy.set("")
     fg_newpwd_spy.set("")
