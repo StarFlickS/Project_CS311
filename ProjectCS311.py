@@ -127,9 +127,9 @@ def LoginPage(root):
            borderless=1,
            command=loginclicked).grid(row=0, column=0, columnspan=2)
 
-    # * Registor Button
+    # * Register Button
     Button(bottom_frm,
-           text="Registor",
+           text="Register",
            fg="black",
            font="verdana 15 bold",
            bg="white",
@@ -570,6 +570,7 @@ def ChangePassword_clicked():
             conn.commit()
             messagebox.showinfo("Admin:", "Password Change Successfully.")
             fg_frm.destroy()
+            header["text"] = "Sign In"
             fg_gmail_spy.set("")
             verif_spy.set("")
             fg_newpwd_spy.set("")
