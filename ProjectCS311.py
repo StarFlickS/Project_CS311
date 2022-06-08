@@ -97,7 +97,8 @@ def LoginPage(root):
                       font="verdana 20",
                       justify=LEFT,
                       borderwidth=0,
-                      highlightthickness=0)
+                      highlightthickness=0,
+                      insertbackground="black")
     gmail_ent.grid(row=0, column=0)
 
     # * Password entry
@@ -115,7 +116,8 @@ def LoginPage(root):
                          justify=LEFT,
                          borderwidth=0,
                          highlightthickness=0,
-                         show="●")
+                         show="●",
+                         insertbackground="black")
     password_ent.grid(row=1, column=0)
 
     # * Login Button
